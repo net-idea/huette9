@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hütte9 - Willkommen{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center mb-5">
+                <h1 class="display-3 fw-bold text-primary">Willkommen in der Hütte9</h1>
+                <p class="lead text-muted">Ihr gemütliches Refugium in den Bergen</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <h2 class="h3 mb-4 text-center">Über unsere Hütte</h2>
+                    <p class="text-justify">
+                        Herzlich willkommen in der <strong>Hütte9</strong>! Unsere charmante Berghütte bietet Ihnen den perfekten Rückzugsort vom Alltag. 
+                        Eingebettet in die malerische Berglandschaft, verbindet unsere Unterkunft traditionellen Hüttencharme mit modernem Komfort.
+                    </p>
+                    <p class="text-justify">
+                        Genießen Sie die atemberaubende Aussicht, die frische Bergluft und die Ruhe der Natur. Ob Sie wandern, Ski fahren oder einfach nur entspannen möchten – 
+                        die Hütte9 ist der ideale Ausgangspunkt für Ihre Bergabenteuer und bietet gleichzeitig eine gemütliche Atmosphäre zum Wohlfühlen.
+                    </p>
+                    <p class="text-justify mb-0">
+                        Unsere liebevoll eingerichtete Hütte verfügt über alle Annehmlichkeiten, die Sie für einen unvergesslichen Aufenthalt benötigen. 
+                        Wir freuen uns darauf, Sie als unsere Gäste begrüßen zu dürfen!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h2 class="h3 mb-0">Kontaktieren Sie uns</h2>
+                    <p class="mb-0 mt-2">Haben Sie Fragen oder möchten Sie einen Aufenthalt buchen?</p>
+                </div>
+                <div class="card-body p-5">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+
+                    {{ form_start(form) }}
+                        <div class="mb-3">
+                            {{ form_label(form.name) }}
+                            {{ form_widget(form.name) }}
+                            {{ form_errors(form.name) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.email) }}
+                            {{ form_widget(form.email) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.subject) }}
+                            {{ form_widget(form.subject) }}
+                            {{ form_errors(form.subject) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.message) }}
+                            {{ form_widget(form.message) }}
+                            {{ form_errors(form.message) }}
+                        </div>
+
+                        <div class="d-grid">
+                            {{ form_widget(form.save) }}
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-4">
+        <div class="col-lg-12 text-center text-muted">
+            <p class="small">&copy; {{ 'now'|date('Y') }} Hütte9. Alle Rechte vorbehalten.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
