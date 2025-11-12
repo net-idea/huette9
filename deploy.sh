@@ -73,12 +73,20 @@ if [ "$USE_YARN" = true ]; then
     if yarn install; then
       echo "✓ Node.js dependencies installed"
     else
-      echo "yarn install failed; trying to install while skipping lifecycle scripts (--ignore-scripts)"
-      if yarn install --ignore-scripts; then
-        echo "✓ Node.js dependencies installed (scripts skipped)"
+      # If engine incompatibilities cause the install to fail (common when node minor
+      # version is slightly outside the package's engines range), allow retrying while
+      # ignoring engine checks. This mirrors common CI workarounds.
+      echo "yarn install failed; trying to install while ignoring engine checks (--ignore-engines)"
+      if yarn install --ignore-engines 2>/dev/null; then
+        echo "✓ Node.js dependencies installed (engines ignored)"
       else
-        echo "ERROR: yarn install failed even with --ignore-scripts" >&2
-        exit 1
+        echo "yarn install failed; trying to install while skipping lifecycle scripts (--ignore-scripts)"
+        if yarn install --ignore-scripts; then
+          echo "✓ Node.js dependencies installed (scripts skipped)"
+        else
+          echo "ERROR: yarn install failed even with --ignore-engines and --ignore-scripts" >&2
+          exit 1
+        fi
       fi
     fi
   fi
