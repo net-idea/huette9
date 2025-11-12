@@ -1,4 +1,4 @@
-# Hütte9 – Mountain cabin website
+a# Hütte9 – Mountain cabin website
 
 A modern Symfony 7.2 web application for an Airbnb-style mountain cabin with a contact form and MariaDB integration.
 
@@ -37,9 +37,14 @@ huette9.de/
 │   │   ├── HomeController.php    # Homepage
 │   │   └── ContactController.php # Contact form page
 │   ├── Entity/
-│   │   └── Contact.php           # Contact form entity
-│   └── Form/
-│       └── ContactType.php       # Contact form type
+│   │   ├── FormContactEntity.php      # Contact form entity
+│   │   └── FormSubmissionMetaEntity.php # Form submission metadata
+│   ├── Form/
+│   │   └── FormContactType.php   # Contact form type
+│   ├── Repository/
+│   │   └── FormContactRepository.php # Contact form repository
+│   └── Service/
+│       └── FormContactService.php # Contact form service
 ├── templates/
 │   ├── base.html.twig            # Base layout with theme support
 │   ├── _partials/
