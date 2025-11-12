@@ -1,0 +1,26 @@
+# Minimale Übersetzungen - nur für Systemelemente
+
+# Navigation
+nav:
+  home: Startseite
+  contact: Kontakt
+
+# Sprachnamen
+language:
+  english: Englisch
+  german: Deutsch
+
+# Theme
+theme:
+  system: System
+  light: Hell
+  dark: Dunkel
+
+# Kontaktformular Erfolgs-/Fehlermeldungen
+contact:
+  success: Vielen Dank für Ihre Nachricht! Wir werden uns bald bei Ihnen melden.
+
+# Fehler
+error:
+  rate_limit: Zu viele Anfragen. Bitte versuchen Sie es später erneut.
+  mail_send_failed: E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.

@@ -1,52 +1,62 @@
-# Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
+## PHPStorm
+/.idea/
 
-# Email spool folder
-/app/spool/*
+## VisualStudioCode
+/.vscode/
+*.code-workspace
 
-# Cache, session files and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-/var/sessions/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
+## Environment
+.env
 
-# Logs (Symfony4)
-/var/log/*
-!var/log/.gitkeep
+## Composer
+composer.phar
 
-# Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/*
+!/public/bundles/.gitignore
+/var/*
+!/var/.gitignore
+/vendor/*
+!/vendor/.gitignore
+###< symfony/framework-bundle ###
 
-# Managed by Composer
-/app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/bin/*
-!bin/console
-!bin/symfony_requirements
-/vendor/
+###> symfony/webpack-encore-bundle ###
+/node_modules/*
+!/node_modules/.gitignore
+/public/build/*
+!/public/build/.gitignore
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
 
-# Assets and user uploads
-/web/bundles/
-/web/uploads/
-
-# PHPUnit
-/app/phpunit.xml
+###> phpunit/phpunit ###
 /phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
 
-# Build data
-/build/
+###> symfony/asset-mapper ###
+#/public/assets/*
+#!/public/assets/.gitignore
+/assets/vendor/*
+!/assets/vendor/.gitignore
+###< symfony/asset-mapper ###
 
-# Composer PHAR
-/composer.phar
+### PHP Coding Standards Fixer
+/php-cs-fixer
+/.php_cs
+/.php_cs.cache
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
 
-# Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
+# DB Adminer
+adminer.php
+adminer.css
+adminer*.*
 
-# Embedded web-server pid file
-/.web-server-pid
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

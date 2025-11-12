@@ -1,0 +1,69 @@
+/* Dark theme overrides */
+:root[data-bs-theme='dark'] {
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+:root[data-bs-theme='dark'] body {
+  background: linear-gradient(to bottom, #0a0e27 0%, #1a1f3a 100%);
+}
+
+:root[data-bs-theme='dark'] .navbar-glass {
+  background: rgba(10, 14, 39, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-bs-theme='dark'] .glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+:root[data-bs-theme='dark'] .glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.7);
+}
+
+:root[data-bs-theme='dark'] .btn-theme-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+:root[data-bs-theme='dark'] .btn-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+:root[data-bs-theme='dark'] .form-control-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+:root[data-bs-theme='dark'] .form-control-glass:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--brand-primary);
+  color: white;
+}
+
+:root[data-bs-theme='dark'] .form-control-glass::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+:root[data-bs-theme='dark'] .bg-pattern {
+  background-color: #0f1629;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+}
+
+:root[data-bs-theme='dark'] .placeholder-image {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+:root[data-bs-theme='dark'] .hero-overlay,
+:root[data-bs-theme='dark'] .cta-overlay {
+  background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+}

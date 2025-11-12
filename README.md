@@ -1,2 +1,186 @@
-# h-tte9
-Internetseite der Hütte9
+# Hütte9 – Mountain cabin website
+
+A modern Symfony 7.2 web application for an Airbnb-style mountain cabin with a contact form and MariaDB integration.
+
+- Framework: Symfony 7.2 (PHP 8.3)
+- Frontend: Webpack Encore, Stimulus, Bootstrap 5, Twig
+- Database: MariaDB (SQLite defaults also supported)
+- Tooling: Composer, Yarn/NPM, Docker Compose (optional)
+
+## 📁 Project structure
+
+```
+huette9.de/
+├── develop.sh                    # Local dev helper (installs deps, builds, runs dev services)
+├── deploy.sh                     # Production deploy helper (builds, installs, migrates, warms cache)
+├── assets/
+│   ├── app.js                    # JS entry (Webpack Encore)
+│   ├── bootstrap.js
+│   ├── controllers/              # Stimulus controllers
+│   ├── controllers.json          # Stimulus bridge entry
+│   └── styles/
+│       ├── app.css               # App-specific styles
+│       ├── theme.css             # Shared theme styles
+│       ├── theme-light.css       # Light theme overrides
+│       └── theme-dark.css        # Dark theme overrides
+├── config/                       # Symfony configuration
+├── docs/                         # Project docs
+│   ├── docker.md                 # Docker installation & usage
+│   ├── symfony.md                # Symfony commands & troubleshooting
+│   └── database.md               # Database troubleshooting
+├── public/                       # Web root
+│   ├── index.php                 # Front controller
+│   ├── build/                    # Compiled assets (generated)
+│   └── bundles/
+├── src/
+│   ├── Controller/
+│   │   ├── HomeController.php    # Homepage
+│   │   └── ContactController.php # Contact form page
+│   ├── Entity/
+│   │   └── Contact.php           # Contact form entity
+│   └── Form/
+│       └── ContactType.php       # Contact form type
+├── templates/
+│   ├── base.html.twig            # Base layout with theme support
+│   ├── _partials/
+│   │   └── navbar.html.twig      # Navigation with theme switcher
+│   ├── home/
+│   │   └── index.html.twig       # Modern homepage
+│   └── contact/
+│       └── index.html.twig       # Contact form page
+├── migrations/
+├── vendor/                       # Composer deps (generated)
+├── var/                          # Cache & logs (generated)
+├── composer.json
+├── package.json
+└── README.md
+```
+
+## ✅ Local development (recommended)
+
+### Prerequisites
+
+- PHP 8.3+
+- Composer
+- Node.js 18+ and Yarn (or NPM)
+- Symfony CLI (optional, for local web server)
+
+### Quick start
+
+You can use the helper script which installs dependencies, clears cache, builds assets and starts both the Webpack dev watcher and Symfony server:
+
+```bash
+./develop.sh
+```
+
+If you prefer to run steps manually:
+
+```bash
+# 1) Install dependencies
+yarn install
+composer install
+
+# 2) Clear cache (dev)
+php bin/console cache:clear
+
+# 3) Build assets in watch mode
+yarn encore dev --watch
+
+# 4) Start a local web server (one of)
+symfony server:start --no-tls --port=8000
+# or
+php -S 127.0.0.1:8000 -t public
+```
+
+Open the app:
+
+```
+http://localhost:8000
+```
+
+### Configure environment variables
+
+All configuration is via environment variables. Typical keys:
+
+- APP_ENV: dev | prod (default: dev)
+- APP_SECRET: random string (generate via `php bin/console regenerate-app-secret`)
+- DEFAULT_URI: base URL used for URL generation in CLI contexts (e.g. http://localhost)
+- LOCK_DSN: lock store DSN (default in dev: `flock`). Examples: `flock`, `semaphore`, `redis://localhost:6379`
+- DATABASE_URL: Doctrine DSN
+  - SQLite (default): `DATABASE_URL="sqlite:///%kernel.project_dir%/var/data_%kernel.environment%.db"`
+  - MariaDB/MySQL: `DATABASE_URL="mysql://user:pass@127.0.0.1:3306/db?serverVersion=10.11.2-MariaDB&charset=utf8mb4"`
+  - Postgres: `DATABASE_URL="postgresql://user:pass@127.0.0.1:5432/db?serverVersion=16&charset=utf8"`
+- MESSENGER_TRANSPORT_DSN: default `doctrine://default?auto_setup=0` (use `sync://` for simple dev)
+- Mail settings (compose into MAILER_DSN): MAIL_SCHEME, MAIL_HOST, MAIL_ENCRYPTION, MAIL_PORT, MAIL_USER, MAIL_PASSWORD
+
+Security: Do not commit production secrets. Prefer real env vars or Symfony Secrets Vault for prod.
+
+## 🐳 Docker development (optional)
+
+If you prefer Docker for a fully containerized setup, see:
+
+- docs/docker.md
+
+## 🛠 Helper scripts
+
+### develop.sh
+
+Local development helper that:
+- Installs dependencies (Yarn and Composer)
+- Clears Symfony cache (dev)
+- Builds front-end assets
+- Starts Webpack Encore watch and Symfony local server in parallel
+
+Usage:
+
+```bash
+./develop.sh
+```
+
+Notes:
+- Requires Node/Yarn (or NPM), PHP and Composer available on your machine.
+- Press Ctrl+C to stop both background processes.
+
+### deploy.sh
+
+Production deployment helper that:
+
+- Ensures production env (APP_ENV=prod)
+- Installs Node deps, builds assets (prod)
+- Installs Composer deps (no-dev, optimized)
+- Runs database migrations (can be skipped)
+- Clears and warms Symfony cache (prod)
+
+Usage:
+
+```bash
+# Default (runs migrations)
+./deploy.sh
+
+# Skip migrations
+SKIP_MIGRATIONS=true ./deploy.sh
+
+# Skip composer auto-scripts (if you need to)
+SKIP_COMPOSER_AUTOSCRIPTS=true ./deploy.sh
+```
+
+## 🧰 Symfony commands
+
+Moved to:
+- docs/symfony.md
+
+## 🆘 Troubleshooting
+
+Troubleshooting has been split by topic:
+
+- Docker: docs/docker.md
+- Symfony: docs/symfony.md
+- Database: docs/database.md
+
+## 📄 License
+
+See [LICENSE](LICENSE) for details.
+
+## 🤝 Contact
+
+For questions or issues, please open a GitHub issue in this repository.
