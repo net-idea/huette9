@@ -1,277 +1,186 @@
-# Hütte9 - Berghütten-Website
+# Hütte9 – Mountain cabin website
 
-Willkommen zur Hütte9-Website! Dies ist eine moderne Symfony 7.2-Webanwendung für eine Airbnb-Berghütte mit einem Kontaktformular und MariaDB-Datenbankintegration.
+A modern Symfony 7.2 web application for an Airbnb-style mountain cabin with a contact form and MariaDB integration.
 
-## Features
+- Framework: Symfony 7.2 (PHP 8.3)
+- Frontend: Webpack Encore, Stimulus, Bootstrap 5, Twig
+- Database: MariaDB (SQLite defaults also supported)
+- Tooling: Composer, Yarn/NPM, Docker Compose (optional)
 
-- 🏔️ Ansprechende Homepage mit Willkommenstext
-- 📧 Kontaktformular mit Validierung und Spam-Schutz (Rate Limiting)
-- 🗄️ MariaDB-Datenbank zur Speicherung von Kontaktanfragen
-- 🎨 Bootstrap 5 für modernes, responsives Design
-- 🐳 Docker & Docker Compose für einfache lokale Entwicklung
-- 🇩🇪 Deutschsprachige Benutzeroberfläche
+## 📁 Project structure
 
-## Technologie-Stack
-
-- **Framework**: Symfony 7.2
-- **Sprache**: PHP 8.3
-- **Datenbank**: MariaDB 10.11
-- **Frontend**: Bootstrap 5, Twig Templates
-- **Containerisierung**: Docker & Docker Compose
-
-## Voraussetzungen
-
-### Für macOS
-
-1. **Docker Desktop für Mac** installieren:
-   ```bash
-   # Homebrew verwenden
-   brew install --cask docker
-   
-   # Oder manuell von https://www.docker.com/products/docker-desktop herunterladen
-   ```
-
-2. **Git** (falls noch nicht installiert):
-   ```bash
-   brew install git
-   ```
-
-### Für Ubuntu
-
-1. **Docker & Docker Compose** installieren:
-   ```bash
-   # Docker installieren
-   sudo apt-get update
-   sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-   sudo apt-get update
-   sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-   
-   # Docker ohne sudo verwenden
-   sudo usermod -aG docker $USER
-   newgrp docker
-   
-   # Docker Compose installieren
-   sudo apt-get install -y docker-compose-plugin
-   ```
-
-2. **Git** (falls noch nicht installiert):
-   ```bash
-   sudo apt-get install -y git
-   ```
-
-## Installation & Lokale Entwicklung
-
-### 1. Repository klonen
-
-```bash
-git clone https://github.com/net-idea/h-tte9.git
-cd h-tte9
+```
+huette9.de/
+├── develop.sh                    # Local dev helper (installs deps, builds, runs dev services)
+├── deploy.sh                     # Production deploy helper (builds, installs, migrates, warms cache)
+├── assets/
+│   ├── app.js                    # JS entry (Webpack Encore)
+│   ├── bootstrap.js
+│   ├── controllers/              # Stimulus controllers
+│   ├── controllers.json          # Stimulus bridge entry
+│   └── styles/
+│       ├── app.css               # App-specific styles
+│       ├── theme.css             # Shared theme styles
+│       ├── theme-light.css       # Light theme overrides
+│       └── theme-dark.css        # Dark theme overrides
+├── config/                       # Symfony configuration
+├── docs/                         # Project docs
+│   ├── docker.md                 # Docker installation & usage
+│   ├── symfony.md                # Symfony commands & troubleshooting
+│   └── database.md               # Database troubleshooting
+├── public/                       # Web root
+│   ├── index.php                 # Front controller
+│   ├── build/                    # Compiled assets (generated)
+│   └── bundles/
+├── src/
+│   ├── Controller/
+│   │   ├── HomeController.php    # Homepage
+│   │   └── ContactController.php # Contact form page
+│   ├── Entity/
+│   │   └── Contact.php           # Contact form entity
+│   └── Form/
+│       └── ContactType.php       # Contact form type
+├── templates/
+│   ├── base.html.twig            # Base layout with theme support
+│   ├── _partials/
+│   │   └── navbar.html.twig      # Navigation with theme switcher
+│   ├── home/
+│   │   └── index.html.twig       # Modern homepage
+│   └── contact/
+│       └── index.html.twig       # Contact form page
+├── migrations/
+├── vendor/                       # Composer deps (generated)
+├── var/                          # Cache & logs (generated)
+├── composer.json
+├── package.json
+└── README.md
 ```
 
-### 2. Mit Docker starten
+## ✅ Local development (recommended)
+
+### Prerequisites
+
+- PHP 8.3+
+- Composer
+- Node.js 18+ and Yarn (or NPM)
+- Symfony CLI (optional, for local web server)
+
+### Quick start
+
+You can use the helper script which installs dependencies, clears cache, builds assets and starts both the Webpack dev watcher and Symfony server:
 
 ```bash
-# Container bauen und starten
-docker compose up -d
-
-# Warten Sie, bis die Container gestartet sind (ca. 30 Sekunden)
-docker compose ps
+./develop.sh
 ```
 
-### 3. Datenbank initialisieren
+If you prefer to run steps manually:
 
 ```bash
-# Datenbank-Migrationen erstellen
-docker compose exec web php bin/console make:migration
+# 1) Install dependencies
+yarn install
+composer install
 
-# Migrationen ausführen
-docker compose exec web php bin/console doctrine:migrations:migrate --no-interaction
+# 2) Clear cache (dev)
+php bin/console cache:clear
+
+# 3) Build assets in watch mode
+yarn encore dev --watch
+
+# 4) Start a local web server (one of)
+symfony server:start --no-tls --port=8000
+# or
+php -S 127.0.0.1:8000 -t public
 ```
 
-### 4. Anwendung öffnen
+Open the app:
 
-Öffnen Sie Ihren Browser und navigieren Sie zu:
 ```
 http://localhost:8000
 ```
 
-Sie sollten nun die Hütte9-Homepage mit dem Kontaktformular sehen!
+### Configure environment variables
 
-## Entwickler-Befehle
+All configuration is via environment variables. Typical keys:
 
-### Container-Verwaltung
+- APP_ENV: dev | prod (default: dev)
+- APP_SECRET: random string (generate via `php bin/console regenerate-app-secret`)
+- DEFAULT_URI: base URL used for URL generation in CLI contexts (e.g. http://localhost)
+- LOCK_DSN: lock store DSN (default in dev: `flock`). Examples: `flock`, `semaphore`, `redis://localhost:6379`
+- DATABASE_URL: Doctrine DSN
+  - SQLite (default): `DATABASE_URL="sqlite:///%kernel.project_dir%/var/data_%kernel.environment%.db"`
+  - MariaDB/MySQL: `DATABASE_URL="mysql://user:pass@127.0.0.1:3306/db?serverVersion=10.11.2-MariaDB&charset=utf8mb4"`
+  - Postgres: `DATABASE_URL="postgresql://user:pass@127.0.0.1:5432/db?serverVersion=16&charset=utf8"`
+- MESSENGER_TRANSPORT_DSN: default `doctrine://default?auto_setup=0` (use `sync://` for simple dev)
+- Mail settings (compose into MAILER_DSN): MAIL_SCHEME, MAIL_HOST, MAIL_ENCRYPTION, MAIL_PORT, MAIL_USER, MAIL_PASSWORD
 
-```bash
-# Container starten
-docker compose up -d
+Security: Do not commit production secrets. Prefer real env vars or Symfony Secrets Vault for prod.
 
-# Container stoppen
-docker compose down
+## 🐳 Docker development (optional)
 
-# Logs anzeigen
-docker compose logs -f
+If you prefer Docker for a fully containerized setup, see:
 
-# In den Web-Container einsteigen
-docker compose exec web bash
-```
+- docs/docker.md
 
-### Symfony-Befehle
+## 🛠 Helper scripts
 
-```bash
-# Cache leeren
-docker compose exec web php bin/console cache:clear
+### develop.sh
 
-# Neue Migration erstellen
-docker compose exec web php bin/console make:migration
+Local development helper that:
+- Installs dependencies (Yarn and Composer)
+- Clears Symfony cache (dev)
+- Builds front-end assets
+- Starts Webpack Encore watch and Symfony local server in parallel
 
-# Migrationen ausführen
-docker compose exec web php bin/console doctrine:migrations:migrate
-
-# Neuen Controller erstellen
-docker compose exec web php bin/console make:controller
-
-# Neue Entity erstellen
-docker compose exec web php bin/console make:entity
-```
-
-### Datenbank-Befehle
+Usage:
 
 ```bash
-# In die MariaDB-Konsole einsteigen
-docker compose exec mariadb mysql -u huette9 -phuette9pass huette9
-
-# Datenbank-Schema validieren
-docker compose exec web php bin/console doctrine:schema:validate
-
-# SQL für Migrationen anzeigen
-docker compose exec web php bin/console doctrine:migrations:status
+./develop.sh
 ```
 
-### Tests ausführen
+Notes:
+- Requires Node/Yarn (or NPM), PHP and Composer available on your machine.
+- Press Ctrl+C to stop both background processes.
+
+### deploy.sh
+
+Production deployment helper that:
+
+- Ensures production env (APP_ENV=prod)
+- Installs Node deps, builds assets (prod)
+- Installs Composer deps (no-dev, optimized)
+- Runs database migrations (can be skipped)
+- Clears and warms Symfony cache (prod)
+
+Usage:
 
 ```bash
-# PHPUnit-Tests ausführen
-docker compose exec web php bin/phpunit
+# Default (runs migrations)
+./deploy.sh
+
+# Skip migrations
+SKIP_MIGRATIONS=true ./deploy.sh
+
+# Skip composer auto-scripts (if you need to)
+SKIP_COMPOSER_AUTOSCRIPTS=true ./deploy.sh
 ```
 
-## Projektstruktur
+## 🧰 Symfony commands
 
-```
-h-tte9/
-├── config/                 # Symfony-Konfigurationsdateien
-│   ├── packages/          # Package-spezifische Konfiguration
-│   └── routes.yaml        # Routing-Konfiguration
-├── public/                # Öffentlich zugängliche Dateien
-│   └── index.php         # Front-Controller
-├── src/
-│   ├── Controller/       # Controller (z.B. HomeController)
-│   ├── Entity/           # Doctrine-Entities (z.B. Contact)
-│   └── Repository/       # Doctrine-Repositories
-├── templates/            # Twig-Templates
-│   ├── base.html.twig   # Basis-Layout
-│   └── home/            # Homepage-Templates
-├── migrations/           # Datenbank-Migrationen
-├── var/                  # Cache und Logs
-├── compose.yaml          # Docker Compose-Konfiguration
-├── Dockerfile           # Docker-Image-Definition
-└── .env                 # Umgebungsvariablen
-```
+Moved to:
+- docs/symfony.md
 
-## Umgebungsvariablen
+## 🆘 Troubleshooting
 
-Die wichtigsten Umgebungsvariablen sind in der `.env`-Datei definiert:
+Troubleshooting has been split by topic:
 
-```env
-APP_ENV=dev
-DATABASE_URL=mysql://huette9:huette9pass@mariadb:3306/huette9?serverVersion=10.11.2-MariaDB&charset=utf8mb4
-```
+- Docker: docs/docker.md
+- Symfony: docs/symfony.md
+- Database: docs/database.md
 
-Für lokale Anpassungen können Sie eine `.env.local`-Datei erstellen.
+## 📄 License
 
-## Spam-Schutz
+See [LICENSE](LICENSE) for details.
 
-Das Kontaktformular verfügt über einen Rate-Limiter, der verhindert, dass ein Benutzer zu viele Anfragen sendet:
-- **Limit**: 3 Anfragen pro IP-Adresse
-- **Zeitfenster**: 15 Minuten
-- Konfiguration in `config/packages/rate_limiter.yaml`
+## 🤝 Contact
 
-## Datenbank-Schema
-
-Die `Contact`-Entity speichert folgende Informationen:
-- **name**: Name des Absenders (erforderlich)
-- **email**: E-Mail-Adresse (erforderlich, validiert)
-- **subject**: Betreff (optional)
-- **message**: Nachricht (erforderlich, mindestens 10 Zeichen)
-- **createdAt**: Zeitstempel der Erstellung
-
-## Troubleshooting
-
-### Port 8000 ist bereits belegt
-
-```bash
-# Anderen Dienst auf Port 8000 stoppen oder Port in compose.yaml ändern
-# Beispiel: "8080:8000" statt "8000:8000"
-```
-
-### Container startet nicht
-
-```bash
-# Logs prüfen
-docker compose logs web
-docker compose logs mariadb
-
-# Container neu bauen
-docker compose down
-docker compose build --no-cache
-docker compose up -d
-```
-
-### Datenbank-Verbindungsfehler
-
-```bash
-# Sicherstellen, dass MariaDB läuft
-docker compose ps
-
-# MariaDB-Logs prüfen
-docker compose logs mariadb
-
-# Gesundheitsstatus prüfen
-docker compose exec mariadb healthcheck.sh --connect
-```
-
-### Permissions-Probleme (Linux)
-
-```bash
-# Eigentümer der Dateien anpassen
-sudo chown -R $USER:$USER .
-
-# Cache-Verzeichnis berechtigen
-chmod -R 777 var/
-```
-
-## Produktions-Deployment
-
-Für Produktionsumgebungen:
-
-1. Setzen Sie `APP_ENV=prod` in der `.env`-Datei
-2. Generieren Sie ein sicheres `APP_SECRET`
-3. Ändern Sie alle Datenbank-Passwörter
-4. Verwenden Sie HTTPS
-5. Aktivieren Sie zusätzliche Sicherheitsmaßnahmen
-
-```bash
-# Produktions-Optimierungen
-composer install --no-dev --optimize-autoloader
-php bin/console cache:clear --env=prod
-php bin/console cache:warmup --env=prod
-```
-
-## Lizenz
-
-Siehe [LICENSE](LICENSE) für Details.
-
-## Kontakt
-
-Bei Fragen oder Problemen öffnen Sie bitte ein Issue im GitHub-Repository.
+For questions or issues, please open a GitHub issue in this repository.

@@ -1,43 +1,39 @@
 #!/bin/bash
 
-# Development Script für Theatergruppe Freispiel
-# Startet Webpack Encore Dev Server und Symfony Development Server parallel
+# Development script for Hütte9
+# Starts Webpack Encore Dev Server and Symfony Development Server in parallel
 
-echo "🎭 Theatergruppe Freispiel - Development Environment"
+echo "🎭 Hütte9 - Development Environment"
 echo "===================================================="
 echo ""
 
-# Farben für Output
+# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Prüfe ob node_modules existiert
-if [ ! -d "node_modules" ]; then
-    echo -e "${YELLOW}📦 Installing Node dependencies...${NC}"
-    yarn install
-    if [ $? -ne 0 ]; then
-        echo -e "${RED}❌ Yarn install failed!${NC}"
-        exit 1
-    fi
+# Always install Node dependencies
+echo -e "${YELLOW}📦 Installing Node dependencies...${NC}"
+yarn install
+if [ $? -ne 0 ]; then
+    echo -e "${RED}❌ Yarn install failed!${NC}"
+    exit 1
 fi
 
-# Prüfe ob vendor existiert
-if [ ! -d "vendor" ]; then
-    echo -e "${YELLOW}📦 Installing PHP dependencies...${NC}"
-    composer install
-    if [ $? -ne 0 ]; then
-        echo -e "${RED}❌ Composer install failed!${NC}"
-        exit 1
-    fi
+# Always install PHP dependencies
+echo -e "${YELLOW}📦 Installing PHP dependencies...${NC}"
+composer install
+if [ $? -ne 0 ]; then
+    echo -e "${RED}❌ Composer install failed!${NC}"
+    exit 1
 fi
 
-# Cache leeren
+# Clear cache
 echo -e "${YELLOW}🧹 Clearing cache...${NC}"
 php bin/console cache:clear
 
-# Assets bauen
+# Build assets
 echo -e "${YELLOW}🔨 Building assets...${NC}"
 yarn encore dev
 if [ $? -ne 0 ]; then
@@ -56,7 +52,7 @@ echo ""
 echo -e "${YELLOW}Press Ctrl+C to stop all servers${NC}"
 echo ""
 
-# Funktion zum Beenden aller Prozesse
+# Function to stop all processes
 cleanup() {
     echo ""
     echo -e "${YELLOW}🛑 Stopping servers...${NC}"
@@ -64,19 +60,19 @@ cleanup() {
     exit 0
 }
 
-# Trap für Ctrl+C
+# Trap for Ctrl+C
 trap cleanup SIGINT SIGTERM
 
-# Starte Webpack Dev Server im Hintergrund
+# Start Webpack Dev Server in background
 yarn encore dev --watch &
 WEBPACK_PID=$!
 
-# Warte kurz, damit Webpack starten kann
+# Wait a bit so Webpack can start
 sleep 2
 
-# Starte Symfony Server im Hintergrund
+# Start Symfony Server in background
 symfony server:start --no-tls --port=8000 &
 SYMFONY_PID=$!
 
-# Warte auf beide Prozesse
+# Wait for both processes
 wait

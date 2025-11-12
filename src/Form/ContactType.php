@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form;
 
 use App\Entity\Contact;
@@ -17,20 +19,20 @@ class ContactType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Name',
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Ihr Name']
+                'attr' => ['placeholder' => 'Your Name']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'E-Mail',
-                'attr' => ['class' => 'form-control', 'placeholder' => 'ihre.email@beispiel.de']
+                'label' => 'Email',
+                'attr' => ['placeholder' => 'your.email@example.com']
             ])
             ->add('subject', TextType::class, [
-                'label' => 'Betreff',
+                'label' => 'Subject',
                 'required' => false,
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Betreff']
+                'attr' => ['placeholder' => 'Subject (optional)']
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Nachricht',
-                'attr' => ['class' => 'form-control', 'rows' => 5, 'placeholder' => 'Ihre Nachricht an uns']
+                'label' => 'Message',
+                'attr' => ['placeholder' => 'Your message to us...']
             ])
         ;
     }

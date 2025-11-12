@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
@@ -16,32 +18,32 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Bitte geben Sie Ihren Namen ein.')]
+    #[Assert\NotBlank(message: 'Please enter your name.')]
     #[Assert\Length(
         min: 2,
         max: 255,
-        minMessage: 'Der Name muss mindestens {{ limit }} Zeichen lang sein.',
-        maxMessage: 'Der Name darf nicht länger als {{ limit }} Zeichen sein.'
+        minMessage: 'Name must be at least {{ limit }} characters long.',
+        maxMessage: 'Name cannot be longer than {{ limit }} characters.'
     )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Bitte geben Sie Ihre E-Mail-Adresse ein.')]
-    #[Assert\Email(message: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.')]
+    #[Assert\NotBlank(message: 'Please enter your email address.')]
+    #[Assert\Email(message: 'Please enter a valid email address.')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(
         max: 255,
-        maxMessage: 'Der Betreff darf nicht länger als {{ limit }} Zeichen sein.'
+        maxMessage: 'Subject cannot be longer than {{ limit }} characters.'
     )]
     private ?string $subject = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message: 'Bitte geben Sie eine Nachricht ein.')]
+    #[Assert\NotBlank(message: 'Please enter a message.')]
     #[Assert\Length(
         min: 10,
-        minMessage: 'Die Nachricht muss mindestens {{ limit }} Zeichen lang sein.'
+        minMessage: 'Message must be at least {{ limit }} characters long.'
     )]
     private ?string $message = null;
 

@@ -1,0 +1,50 @@
+/* Light theme overrides */
+:root[data-bs-theme='light'] {
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+:root[data-bs-theme='light'] body {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+}
+
+:root[data-bs-theme='light'] .navbar-glass {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+:root[data-bs-theme='light'] .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+:root[data-bs-theme='light'] .glass-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+}
+
+:root[data-bs-theme='light'] .btn-theme-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--bs-body-color);
+}
+
+:root[data-bs-theme='light'] .btn-theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-bs-theme='light'] .form-control-glass {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root[data-bs-theme='light'] .form-control-glass:focus {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--brand-primary);
+}
+
+:root[data-bs-theme='light'] .bg-pattern {
+  background-color: #f8f9fa;
+}

@@ -75,6 +75,12 @@ Encore
     // enable Stimulus bridge (controllers.json alias)
     .enableStimulusBridge('./assets/controllers.json')
 
+    // copy images to build directory
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[hash:8].[ext]',
+        pattern: /\.(png|jpg|jpeg|gif|ico|svg|webp)$/
+    })
 
     // dev-server: enable HMR/live reload and watch Twig/PHP changes
     .configureDevServerOptions((options) => {

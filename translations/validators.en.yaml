@@ -1,0 +1,9 @@
+# Contact form validation messages
+Please enter your name.: Please enter your name.
+Name must be at least {{ limit }} characters long.: Name must be at least {{ limit }} characters long.
+Name cannot be longer than {{ limit }} characters.: Name cannot be longer than {{ limit }} characters.
+Please enter your email address.: Please enter your email address.
+Please enter a valid email address.: Please enter a valid email address.
+Subject cannot be longer than {{ limit }} characters.: Subject cannot be longer than {{ limit }} characters.
+Please enter a message.: Please enter a message.
+Message must be at least {{ limit }} characters long.: Message must be at least {{ limit }} characters long.

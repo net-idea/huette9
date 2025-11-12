@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# Deployment script for Seepferdchen-Garde (Symfony + Webpack Encore):
+# Deployment script for Hütte9 (Symfony + Webpack Encore):
 # - Installs Node and PHP deps if missing
 # - Builds front-end assets (production)
 # - Installs PHP dependencies
@@ -10,7 +10,7 @@ set -euo pipefail
 # - Clears & warms Symfony cache (prod)
 #
 # Usage:
-#   ./deploy.sh                    # Normal deployment with migrations
+#   ./deploy.sh                        # Normal deployment with migrations
 #   SKIP_MIGRATIONS=true ./deploy.sh   # Skip database migrations
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -21,7 +21,7 @@ export APP_ENV=prod
 export APP_DEBUG=0
 export SYMFONY_ENV=prod
 
-echo "Starting deployment for Seepferdchen-Garde..."
+echo "Starting deployment for Hütte9..."
 echo "Environment: APP_ENV=$APP_ENV"
 echo ""
 

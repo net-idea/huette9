@@ -1,0 +1,9 @@
+# Kontaktformular Validierungsmeldungen
+Please enter your name.: Bitte geben Sie Ihren Namen ein.
+Name must be at least {{ limit }} characters long.: Der Name muss mindestens {{ limit }} Zeichen lang sein.
+Name cannot be longer than {{ limit }} characters.: Der Name darf nicht länger als {{ limit }} Zeichen sein.
+Please enter your email address.: Bitte geben Sie Ihre E-Mail-Adresse ein.
+Please enter a valid email address.: Bitte geben Sie eine gültige E-Mail-Adresse ein.
+Subject cannot be longer than {{ limit }} characters.: Der Betreff darf nicht länger als {{ limit }} Zeichen sein.
+Please enter a message.: Bitte geben Sie eine Nachricht ein.
+Message must be at least {{ limit }} characters long.: Die Nachricht muss mindestens {{ limit }} Zeichen lang sein.
