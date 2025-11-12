@@ -1,0 +1,390 @@
+/* ============================================
+   FORM STYLES - Base (Theme-Agnostic)
+   Material Design Floating Labels
+   ============================================ */
+
+/* Form Group with Floating Label */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Controls - Base Styles */
+.form-control {
+  width: 100%;
+  padding: 1rem 0.875rem 0.375rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 2px solid var(--input-border);
+  border-radius: 0.19rem !important; /* sharp radius */
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--input-shadow);
+}
+
+/* Remove all placeholders */
+.form-control::placeholder {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Floating Label - Base State */
+.form-label {
+  position: absolute;
+  top: 0.875rem;
+  left: 0.875rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--input-label-color);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  padding: 0 0.25rem;
+  z-index: 1;
+}
+
+/* Floating Label - Active State */
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label,
+.form-control.has-value ~ .form-label {
+  top: -0.625rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+  background: var(--input-label-bg);
+  padding: 0 0.5rem;
+}
+
+/* Focus State */
+.form-control:focus {
+  border-color: var(--input-focus-border);
+  box-shadow:
+    var(--input-focus-shadow),
+    0 0 0 0.25rem rgb(13 110 253 / 15%);
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--input-focus-bg);
+}
+
+/* Hover State */
+.form-control:hover:not(:focus) {
+  border-color: rgb(13 110 253 / 30%);
+  box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
+}
+
+/* Textarea */
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+  padding-top: 1.25rem;
+}
+
+textarea.form-control ~ .form-label {
+  top: 1rem;
+}
+
+/* Invalid State */
+.form-control:invalid:not(:placeholder-shown),
+.form-control.is-invalid {
+  border-color: var(--brand-danger);
+  background: rgb(239 68 68 / 5%);
+}
+
+.form-control:invalid:not(:placeholder-shown) ~ .form-label,
+.form-control.is-invalid ~ .form-label {
+  color: var(--brand-danger);
+}
+
+/* Invalid Feedback */
+.invalid-feedback {
+  color: var(--brand-danger);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: block;
+  font-weight: 500;
+}
+
+/* ============================================
+   CHECKBOX & RADIO STYLES
+   ============================================ */
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: 0;
+  min-height: auto;
+  margin-bottom: 1rem;
+}
+
+.form-check-input {
+  width: 1.375rem;
+  height: 1.375rem;
+  margin: 0;
+  flex-shrink: 0;
+  border: 2px solid var(--input-border);
+  border-radius: 0.19rem;
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check-input:hover {
+  border-color: var(--brand-primary);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgb(13 110 253 / 20%);
+}
+
+.form-check-input:checked {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  box-shadow: 0 4px 15px rgb(13 110 253 / 40%);
+}
+
+.form-check-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (width <= 767.98px) {
+  .form-control {
+    font-size: 16px;
+    padding: 0.875rem 0.75rem 0.375rem;
+  }
+
+  .form-label {
+    font-size: 0.95rem;
+    left: 0.75rem;
+  }
+
+  .form-control:focus ~ .form-label,
+  .form-control:not(:placeholder-shown) ~ .form-label {
+    font-size: 0.7rem;
+  }
+
+  .form-check-input {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .form-check-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================
+   form PAGE STYLES - Base
+   ============================================ */
+
+/* form Info List */
+.form-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* form Info Items - Base Styles */
+.form-info-item {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.form-info-item:hover {
+  transform: translateX(5px);
+}
+
+.form-info-item .form-icon {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: 0.75rem;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgb(102 126 234 / 30%);
+  transition: all 0.3s ease;
+}
+
+.form-info-item:hover .form-icon {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgb(102 126 234 / 50%);
+}
+
+.form-info-item h5 {
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.form-info-item p,
+.form-info-item small {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* form Form Container */
+.form-form {
+  position: relative;
+}
+
+.form-form .form-group {
+  margin-bottom: 0;
+}
+
+/* form Form Labels */
+.form-form .form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  display: block;
+}
+
+/* form Form Submit Button */
+.form-form .btn-primary {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 0.875rem 2rem;
+  background: var(--gradient-primary);
+  border: none;
+  box-shadow: 0 4px 15px rgb(102 126 234 / 40%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.form-form .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgb(102 126 234 / 60%);
+}
+
+.form-form .btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Sticky Section */
+.sticky-lg-top {
+  position: sticky;
+  top: 2rem;
+  z-index: 1;
+}
+
+/* ============================================
+   LIGHT THEME SPECIFIC
+   ============================================ */
+
+:root[data-bs-theme='light'] .form-info-item h5 {
+  color: #212529;
+}
+
+:root[data-bs-theme='light'] .form-info-item p,
+:root[data-bs-theme='light'] .form-info-item small {
+  color: #6c757d;
+}
+
+:root[data-bs-theme='light'] .form-info-item .text-muted {
+  color: #6c757d !important;
+}
+
+:root[data-bs-theme='light'] .form-info-item a {
+  color: #0d6efd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+:root[data-bs-theme='light'] .form-info-item a:hover {
+  color: #0b5ed7;
+  text-decoration: underline;
+}
+
+:root[data-bs-theme='light'] .form-form .form-label {
+  color: #212529;
+}
+
+/* ============================================
+   DARK THEME SPECIFIC
+   ============================================ */
+
+:root[data-bs-theme='dark'] .form-info-item h5 {
+  color: rgb(255 255 255 / 95%);
+}
+
+:root[data-bs-theme='dark'] .form-info-item p,
+:root[data-bs-theme='dark'] .form-info-item small {
+  color: rgb(255 255 255 / 65%);
+}
+
+:root[data-bs-theme='dark'] .form-info-item .text-muted {
+  color: rgb(255 255 255 / 60%) !important;
+}
+
+:root[data-bs-theme='dark'] .form-info-item a {
+  color: #93c5fd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+:root[data-bs-theme='dark'] .form-info-item a:hover {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+:root[data-bs-theme='dark'] .form-form .form-label {
+  color: rgb(255 255 255 / 90%);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (width <= 991.98px) {
+  .form-info-item .form-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    font-size: 1.25rem;
+  }
+
+  .glass-card {
+    padding: 1.5rem !important;
+  }
+
+  .sticky-lg-top {
+    position: relative;
+    top: 0;
+  }
+
+  .form-info-list {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (width <= 767.98px) {
+  .form-info-item .form-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 1.125rem;
+  }
+
+  .form-form .btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}

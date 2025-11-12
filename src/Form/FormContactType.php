@@ -21,8 +21,9 @@ class FormContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Name',
-                'required' => true,
+                'label'       => 'Name',
+                'required'    => true,
+                'empty_data'  => '',
                 'constraints' => [
                     new Assert\NotBlank(message: 'Please enter your name.'),
                     new Assert\Length(
@@ -34,8 +35,9 @@ class FormContactType extends AbstractType
                 ],
             ])
             ->add('emailAddress', EmailType::class, [
-                'label' => 'Email',
-                'required' => true,
+                'label'       => 'Email',
+                'required'    => true,
+                'empty_data'  => '',
                 'constraints' => [
                     new Assert\NotBlank(message: 'Please enter your email address.'),
                     new Assert\Email(message: 'Please enter a valid email address.'),
@@ -43,22 +45,25 @@ class FormContactType extends AbstractType
                 ],
             ])
             ->add('phone', TelType::class, [
-                'label' => 'Phone',
-                'required' => false,
+                'label'       => 'Phone',
+                'required'    => false,
+                'empty_data'  => '',
                 'constraints' => [
                     new Assert\Length(max: 40),
                 ],
             ])
             ->add('subject', TextType::class, [
-                'label' => 'Subject',
-                'required' => false,
+                'label'       => 'Subject',
+                'required'    => false,
+                'empty_data'  => '',
                 'constraints' => [
                     new Assert\Length(max: 255),
                 ],
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Message',
-                'required' => true,
+                'label'       => 'Message',
+                'required'    => true,
+                'empty_data'  => '',
                 'constraints' => [
                     new Assert\NotBlank(message: 'Please enter a message.'),
                     new Assert\Length(
@@ -68,33 +73,34 @@ class FormContactType extends AbstractType
                 ],
             ])
             ->add('consent', CheckboxType::class, [
-                'label' => 'I agree to the processing of my data',
-                'required' => true,
+                'label'       => 'I agree to the processing of my data',
+                'required'    => true,
                 'constraints' => [
                     new Assert\IsTrue(message: 'You must agree to continue.'),
                 ],
             ])
             ->add('copy', CheckboxType::class, [
-                'label' => 'Send me a copy of this message',
+                'label'    => 'Send me a copy of this message',
                 'required' => false,
             ])
             // Honeypot field (not persisted, should remain empty)
             ->add('website', TextType::class, [
-                'mapped' => false,
+                'mapped'   => false,
                 'required' => false,
-                'attr' => [
+                'attr'     => [
                     'autocomplete' => 'off',
-                    'tabindex' => '-1',
-                    'style' => 'position:absolute;left:-9999px;',
+                    'tabindex'     => '-1',
+                    'style'        => 'position:absolute;left:-9999px;',
                 ],
             ])
             ->add('emailrep', TextType::class, [
-                'mapped' => true,
+                'mapped'   => true,
                 'required' => false,
-                'attr' => [
+                'empty_data' => '',
+                'attr'     => [
                     'autocomplete' => 'off',
-                    'tabindex' => '-1',
-                    'style' => 'position:absolute;left:-9999px;',
+                    'tabindex'     => '-1',
+                    'style'        => 'position:absolute;left:-9999px;',
                 ],
             ]);
     }

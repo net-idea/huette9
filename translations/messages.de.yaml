@@ -4,6 +4,9 @@
 nav:
   home: Startseite
   contact: Kontakt
+  booking: Buchung
+  impressum: Impressum
+  datenschutz: Datenschutz
 
 # Sprachnamen
 language:
@@ -20,7 +23,68 @@ theme:
 contact:
   success: Vielen Dank für Ihre Nachricht! Wir werden uns bald bei Ihnen melden.
 
+# Buchungsformular
+booking:
+  form:
+    arrival_date: 'Ankunftsdatum'
+    arrival_date_placeholder: 'Ankunftsdatum auswählen'
+    departure_date: 'Abreisedatum'
+    departure_date_placeholder: 'Abreisedatum auswählen'
+    number_of_persons: 'Anzahl der Personen'
+    number_placeholder: 'Anzahl eingeben'
+    name: 'Name'
+    name_placeholder: 'Ihr Name'
+    email: 'E-Mail-Adresse'
+    email_placeholder: 'ihre.email@example.com'
+    phone: 'Telefonnummer'
+    phone_placeholder: '+49 (0) 123 456789'
+    message: 'Nachricht (optional)'
+    message_placeholder: 'Besondere Wünsche oder Fragen...'
+    data_consent: 'Ich akzeptiere die Datenschutzerklärung'
+    submit: 'Anfrage absenden'
+  validation:
+    arrival_date_required: 'Ankunftsdatum ist erforderlich'
+    arrival_date_future: 'Ankunftsdatum muss in der Zukunft liegen'
+    departure_date_required: 'Abreisedatum ist erforderlich'
+    departure_date_after_arrival: 'Abreisedatum muss nach dem Ankunftsdatum liegen'
+    persons_required: 'Anzahl der Personen ist erforderlich'
+    persons_positive: 'Anzahl der Personen muss größer als 0 sein'
+    persons_max: 'Maximal 20 Personen'
+    name_required: 'Name ist erforderlich'
+    name_min: 'Name muss mindestens {{ limit }} Zeichen lang sein'
+    name_max: 'Name darf maximal {{ limit }} Zeichen lang sein'
+    email_required: 'E-Mail ist erforderlich'
+    email_invalid: 'E-Mail ist ungültig'
+    phone_required: 'Telefonnummer ist erforderlich'
+    phone_min: 'Telefonnummer muss mindestens {{ limit }} Zeichen lang sein'
+    phone_max: 'Telefonnummer darf maximal {{ limit }} Zeichen lang sein'
+    message_max: 'Nachricht darf maximal {{ limit }} Zeichen lang sein'
+    data_consent_required: 'Sie müssen der Datenschutzerklärung zustimmen'
+  confirm:
+    ok: 'Ihre Buchung wurde bestätigt! Vielen Dank.'
+    already: 'Diese Buchung wurde bereits bestätigt.'
+    notfound: 'Bestätigungslink ungültig oder abgelaufen.'
+  success: 'Vielen Dank für Ihre Anfrage! Wir werden uns bald bei Ihnen melden.'
+
+# Footer und allgemein
+lesen: lesen
+Wichtig: Wichtig
+Alle Felder mit * sind erforderlich: Alle Felder mit * sind erforderlich
+Sie erhalten eine Bestätigungsemail mit einem Bestätigungslink: Sie erhalten eine Bestätigungsemail mit einem Bestätigungslink
+Die Bestätigung ist notwendig, um Ihre Buchung abzuschließen: Die Bestätigung ist notwendig, um Ihre Buchung abzuschließen
+Eine gemütliche Wohnung in Dormagen zwischen Köln und Düsseldorf: Eine gemütliche Wohnung in Dormagen zwischen Köln und Düsseldorf
+Alle Rechte vorbehalten.: Alle Rechte vorbehalten.
+Buchungsanfrage: Buchungsanfrage
+Erfolg!: Erfolg!
+Fehler: Fehler
+zur Startseite: zur Startseite
+Neue Anfrage: Neue Anfrage
+Sie können sich nun abmelden oder zur Startseite zurückkehren.: Sie können sich nun abmelden oder zur Startseite zurückkehren.
+Diese Buchung wurde bereits bestätigt. Wenn Sie Fragen haben, kontaktieren Sie uns bitte.: Diese Buchung wurde bereits bestätigt. Wenn Sie Fragen haben, kontaktieren Sie uns bitte.
+Der Bestätigungslink ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.: Der Bestätigungslink ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.
+
 # Fehler
 error:
   rate_limit: Zu viele Anfragen. Bitte versuchen Sie es später erneut.
   mail_send_failed: E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.
+  database_error: Fehler beim Speichern. Bitte versuchen Sie es später erneut.

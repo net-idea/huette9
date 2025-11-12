@@ -1,0 +1,18 @@
+Neue bestätigte Buchung
+
+Eine Buchungsanfrage wurde soeben vom Gast bestätigt.
+
+BUCHUNGSDETAILS:
+- Ankunftsdatum: {{ booking.arrivalDate|date('d.m.Y') }}
+- Abreisedatum: {{ booking.departureDate|date('d.m.Y') }}
+- Anzahl Personen: {{ booking.numberOfPersons }}
+- Gast: {{ booking.contactName }}
+- E‑Mail: {{ booking.contactEmail }}
+{% if booking.contactPhone %}- Telefon: {{ booking.contactPhone }}
+{% endif %}{% if booking.notes %}- Anmerkungen: {{ booking.notes }}
+{% endif %}- Bestätigt am: {{ booking.confirmedAt|date('d.m.Y H:i') }}
+
+NÄCHSTE SCHRITTE:
+Bitte kontaktieren Sie den Gast, um die Buchung zu finalisieren und letzte Details zu klären.
+
+Hütte9 Buchungsverwaltung

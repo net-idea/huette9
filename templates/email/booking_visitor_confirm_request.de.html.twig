@@ -1,0 +1,67 @@
+{% extends 'email/base.html.twig' %}
+
+{% block title %}Ihre Buchungsbestätigung{% endblock %}
+
+{% block header_title %}Hütte9 - Bergversteck in den Alpen{% endblock %}
+
+{% block body %}
+  <h2 class="h1">Bitte bestätigen Sie Ihre Buchung</h2>
+  <p class="p">
+    Hallo {{ booking.contactName }},
+  </p>
+  <p class="p">
+    vielen Dank für Ihre Buchungsanfrage auf Hütte9!
+  </p>
+  <p class="p">
+    Bitte bestätigen Sie Ihre Buchung mit einem Klick auf den folgenden Link:
+  </p>
+  <p class="p">
+    <a href="{{ confirmUrl }}" class="btn btn-primary">Buchung bestätigen</a>
+  </p>
+  <p class="p">
+    Oder öffnen Sie diesen Link in Ihrem Browser:<br /><a href="{{ confirmUrl }}">{{ confirmUrl }}</a>
+  </p>
+
+  <h3 class="h2">Zusammenfassung Ihrer Anfrage</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem">
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold; width: 40%">Ankunftsdatum:</td>
+      <td style="padding: 0.5rem">{{ booking.arrivalDate|date('d.m.Y') }}</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">Abreisedatum:</td>
+      <td style="padding: 0.5rem">{{ booking.departureDate|date('d.m.Y') }}</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">Anzahl Personen:</td>
+      <td style="padding: 0.5rem">{{ booking.numberOfPersons }} Person(en)</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">Gast:</td>
+      <td style="padding: 0.5rem">{{ booking.contactName }}</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">E-Mail:</td>
+      <td style="padding: 0.5rem">{{ booking.contactEmail }}</td>
+    </tr>
+    {% if booking.contactPhone %}
+      <tr style="border-bottom: 1px solid #ddd">
+        <td style="padding: 0.5rem; font-weight: bold">Telefon:</td>
+        <td style="padding: 0.5rem">{{ booking.contactPhone }}</td>
+      </tr>
+    {% endif %} {% if booking.notes %}
+      <tr style="border-bottom: 1px solid #ddd">
+        <td style="padding: 0.5rem; font-weight: bold">Anmerkungen:</td>
+        <td style="padding: 0.5rem">{{ booking.notes }}</td>
+      </tr>
+    {% endif %}
+  </table>
+
+  <h3 class="h2">Nächste Schritte</h3>
+  <p class="p">
+    Nachdem Sie diese E-Mail bestätigt haben, werden wir uns unverzüglich bei Ihnen melden, um die Buchung zu finalisieren und letzte Details zu klären.
+  </p>
+  <p class="p">
+    Falls Sie diese Anfrage nicht veranlasst haben, ignorieren Sie bitte diese E-Mail.
+  </p>
+{% endblock %}

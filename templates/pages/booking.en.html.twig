@@ -1,0 +1,166 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Booking - Hütte9{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  {# Unified header like contact pages #}
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">Booking Request</h1>
+        <p class="lead text-muted">Fill out the form to submit a booking request</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="glass-card p-4 p-md-5">
+        {# removed in-card header to avoid duplication; unified header above #} {# h1 and subtitle moved to top header #} {% if app.flashes('success')|length > 0 %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <i class="bi bi-check-circle me-2"></i>
+          {% for message in app.flashes('success') %} {{ message }} {% endfor %}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %} {% if app.flashes('error')|length > 0 %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          {% for message in app.flashes('error') %} {{ message }} {% endfor %}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+
+        <form method="post" class="booking-form" id="booking-form" novalidate>
+          <div class="row g-3">
+            {# Travel Dates Section #}
+            <div class="col-12">
+              <h5 class="mb-3 text-primary"><i class="bi bi-calendar-check me-2"></i>Travel Dates</h5>
+            </div>
+
+            {# Arrival Date #}
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_widget(form.arrivalDate, {attr: {class: 'form-control'}}) }}
+                <label for="{{ form.arrivalDate.vars.id }}" class="form-label">
+                  {{ form.arrivalDate.vars.label|trans }}
+                  <span class="text-danger">*</span>
+                </label>
+                {{ form_errors(form.arrivalDate) }}
+              </div>
+            </div>
+
+            {# Departure Date #}
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_widget(form.departureDate, {attr: {class: 'form-control'}}) }}
+                <label for="{{ form.departureDate.vars.id }}" class="form-label">
+                  {{ form.departureDate.vars.label|trans }}
+                  <span class="text-danger">*</span>
+                </label>
+                {{ form_errors(form.departureDate) }}
+              </div>
+            </div>
+
+            {# Number of Persons #}
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_widget(form.numberOfPersons, {attr: {class: 'form-control'}}) }}
+                <label for="{{ form.numberOfPersons.vars.id }}" class="form-label">
+                  {{ form.numberOfPersons.vars.label|trans }}
+                  <span class="text-danger">*</span>
+                </label>
+                {{ form_errors(form.numberOfPersons) }}
+              </div>
+            </div>
+
+            {# Contact Information Section #}
+            <div class="col-12 mt-4">
+              <h5 class="mb-3 text-primary"><i class="bi bi-person me-2"></i>Contact Information</h5>
+            </div>
+
+            {# Name #}
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_widget(form.contactName, {attr: {class: 'form-control'}}) }}
+                <label for="{{ form.contactName.vars.id }}" class="form-label">
+                  {{ form.contactName.vars.label|trans }}
+                  <span class="text-danger">*</span>
+                </label>
+                {{ form_errors(form.contactName) }}
+              </div>
+            </div>
+
+            {# Email #}
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_widget(form.contactEmail, {attr: {class: 'form-control'}}) }}
+                <label for="{{ form.contactEmail.vars.id }}" class="form-label">
+                  {{ form.contactEmail.vars.label|trans }}
+                  <span class="text-danger">*</span>
+                </label>
+                {{ form_errors(form.contactEmail) }}
+              </div>
+            </div>
+
+            {# Phone #}
+            <div class="col-12">
+              <div class="form-group">
+                {{ form_widget(form.contactPhone, {attr: {class: 'form-control'}}) }}
+                <label for="{{ form.contactPhone.vars.id }}" class="form-label">
+                  {{ form.contactPhone.vars.label|trans }}
+                  <span class="text-danger">*</span>
+                </label>
+                {{ form_errors(form.contactPhone) }}
+              </div>
+            </div>
+
+            {# Message #}
+            <div class="col-12">
+              <div class="form-group">
+                {{ form_widget(form.notes, {attr: {class: 'form-control', rows: 4}}) }}
+                <label for="{{ form.notes.vars.id }}" class="form-label"> {{ form.notes.vars.label|trans }} </label>
+                {{ form_errors(form.notes) }}
+                <small class="form-text text-muted">Optional: Special requests or notes</small>
+              </div>
+            </div>
+
+            {# Data Consent Checkbox #}
+            <div class="col-12 mt-3">
+              <div class="form-check">
+                {{ form_widget(form.dataConsent, {attr: {class: 'form-check-input'}}) }}
+                <label class="form-check-label" for="{{ form.dataConsent.vars.id }}">
+                  I accept the
+                  <a href="{{ path('app_privacy') }}" target="_blank">Privacy Policy</a>
+                  <span class="text-danger">*</span>
+                </label>
+                {{ form_errors(form.dataConsent) }}
+              </div>
+            </div>
+
+            {# Honeypot fields (hidden) #}
+            <div style="position: absolute; left: -9999px">{{ form_row(form.website) }} {{ form_row(form.emailrep) }}</div>
+
+            {# CSRF Token #} {{ form_row(form._token) }} {# Submit Button #}
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary btn-lg w-100">
+                <i class="bi bi-send me-2"></i>
+                {{ 'booking.form.submit'|trans }}
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="mt-4 p-3 bg-light rounded border">
+          <h6 class="mb-2"><i class="bi bi-info-circle me-2"></i>Important:</h6>
+          <ul class="mb-0 small">
+            <li>All fields marked with * are required</li>
+            <li>You will receive a confirmation email with a confirmation link</li>
+            <li>The confirmation is necessary to complete your booking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

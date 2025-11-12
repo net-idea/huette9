@@ -1,9 +1,14 @@
-# Contact form validation messages
-Please enter your name.: Please enter your name.
-Name must be at least {{ limit }} characters long.: Name must be at least {{ limit }} characters long.
-Name cannot be longer than {{ limit }} characters.: Name cannot be longer than {{ limit }} characters.
-Please enter your email address.: Please enter your email address.
-Please enter a valid email address.: Please enter a valid email address.
-Subject cannot be longer than {{ limit }} characters.: Subject cannot be longer than {{ limit }} characters.
-Please enter a message.: Please enter a message.
-Message must be at least {{ limit }} characters long.: Message must be at least {{ limit }} characters long.
+booking.validation.arrival_date_required: "Please select an arrival date."
+booking.validation.departure_date_required: "Please select a departure date."
+booking.validation.persons_required: "Please enter the number of persons."
+booking.validation.persons_invalid: "Please enter a number between 1 and 20."
+booking.validation.name_required: "Please enter your name."
+booking.validation.name_min: "Your name must be at least {{ limit }} characters long."
+booking.validation.name_max: "Your name cannot be longer than {{ limit }} characters."
+booking.validation.email_required: "Please enter your email address."
+booking.validation.email_invalid: "Please enter a valid email address."
+booking.validation.phone_required: "Please enter your phone number."
+booking.validation.phone_min: "Your phone number must be at least {{ limit }} digits."
+booking.validation.phone_max: "Your phone number cannot be longer than {{ limit }} digits."
+booking.validation.message_max: "Your message cannot be longer than {{ limit }} characters."
+booking.validation.data_consent_required: "You must agree to the data policy to continue."

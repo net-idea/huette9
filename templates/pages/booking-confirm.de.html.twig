@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Buchung bestätigen - Hütte9{% endblock %}
+
+{% block body %}
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold mb-3">Buchungsbestätigung</h1>
+          <p class="lead text-muted">
+            Status Ihrer Buchungsbestätigung
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        {% if status == 'ok' %}
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">{{ 'Erfolg!'|trans }}</h4>
+            <p>
+              {{ 'booking.confirm.ok'|trans }}
+            </p>
+            <hr />
+            <p class="mb-0">
+              {{ 'Sie können sich nun abmelden oder zur Startseite zurückkehren.'|trans }}
+            </p>
+          </div>
+        {% elseif status == 'already' %}
+          <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">{{ 'Information'|trans }}</h4>
+            <p>
+              {{ 'booking.confirm.already'|trans }}
+            </p>
+            <hr />
+            <p class="mb-0">
+              {{ 'Diese Buchung wurde bereits bestätigt. Wenn Sie Fragen haben, kontaktieren Sie uns bitte.'|trans }}
+            </p>
+          </div>
+        {% else %}
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">{{ 'Fehler'|trans }}</h4>
+            <p>
+              {{ 'booking.confirm.notfound'|trans }}
+            </p>
+            <hr />
+            <p class="mb-0">
+              {{ 'Der Bestätigungslink ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.'|trans }}
+            </p>
+          </div>
+        {% endif %}
+
+        <div class="mt-4">
+          <a href="{{ path('app_home') }}" class="btn btn-primary">{{ 'zur Startseite'|trans }}</a>
+          <a href="{{ path('app_booking') }}" class="btn btn-outline-primary">{{ 'Neue Anfrage'|trans }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

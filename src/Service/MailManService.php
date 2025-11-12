@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Entity\FormBookingEntity;
 use App\Entity\FormContactEntity;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
@@ -24,7 +25,8 @@ readonly class MailManService
         private string $fromName,
         private string $toAddress,
         private string $toName,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private RequestStack $requestStack
     ) {
     }
 
@@ -41,10 +43,13 @@ readonly class MailManService
 
         $context = ['contact' => $contact];
 
+        // Determine locale from current request (default to 'de')
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
+
         try {
-            $ownerSubject = 'Seepferdchen Garde — Neue Kontaktanfrage';
-            $ownerText = $this->twig->render('email/contact_owner.txt.twig', $context);
-            $ownerHtml = $this->twig->render('email/contact_owner.html.twig', $context);
+            $ownerSubject = 'Hütte9 — Neue Kontaktanfrage';
+            $ownerText = $this->twig->render("email/contact_owner.{$locale}.txt.twig", $context);
+            $ownerHtml = $this->twig->render("email/contact_owner.{$locale}.html.twig", $context);
 
             $emailOwner = (new Email())
                 ->from($from)
@@ -62,9 +67,9 @@ readonly class MailManService
             ]);
 
             if ($contact->getCopy()) {
-                $visitorSubject = 'Seepferdchen Garde — Ihre Kontaktanfrage';
-                $visitorText = $this->twig->render('email/contact_visitor.txt.twig', $context);
-                $visitorHtml = $this->twig->render('email/contact_visitor.html.twig', $context);
+                $visitorSubject = 'de' === $locale ? 'Hütte9 — Ihre Kontaktanfrage' : 'Hütte9 — Your Contact Request';
+                $visitorText = $this->twig->render("email/contact_visitor.{$locale}.txt.twig", $context);
+                $visitorHtml = $this->twig->render("email/contact_visitor.{$locale}.html.twig", $context);
 
                 $emailVisitor = (new Email())
                     ->from($from)
@@ -94,27 +99,33 @@ readonly class MailManService
     public function sendBookingVisitorConfirmationRequest(FormBookingEntity $booking, string $confirmUrl): void
     {
         $from = new Address($this->fromAddress, $this->fromName);
-        $toVisitor = new Address($booking->getParentEmail(), $booking->getParentName());
+        $toVisitor = new Address($booking->getContactEmail(), $booking->getContactName());
 
         $context = [
             'booking'    => $booking,
             'confirmUrl' => $confirmUrl,
         ];
 
+        // Determine locale from current request (default to 'de')
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
+
         // Log before attempting to render or send
         $this->logger->info(
             'Preparing booking confirmation request',
             [
-                'to'    => $toVisitor->getAddress(),
-                'name'  => $toVisitor->getName(),
-                'token' => substr($booking->getConfirmationToken(), 0, 6) . '…',
+                'to'     => $toVisitor->getAddress(),
+                'name'   => $toVisitor->getName(),
+                'token'  => substr($booking->getConfirmationToken(), 0, 6) . '…',
+                'locale' => $locale,
             ]
         );
 
         try {
-            $subject = 'Seepferdchen Garde — Bitte bestätigen Sie Ihre Anmeldung';
-            $text = $this->twig->render('email/booking_visitor_confirm_request.txt.twig', $context);
-            $html = $this->twig->render('email/booking_visitor_confirm_request.html.twig', $context);
+            $subject = 'de' === $locale
+                ? 'Hütte9 — Bitte bestätigen Sie Ihre Buchung'
+                : 'Hütte9 — Please Confirm Your Booking';
+            $text = $this->twig->render("email/booking_visitor_confirm_request.{$locale}.txt.twig", $context);
+            $html = $this->twig->render("email/booking_visitor_confirm_request.{$locale}.html.twig", $context);
 
             $email = (new Email())
                 ->from($from)
@@ -159,14 +170,19 @@ readonly class MailManService
 
         $context = ['booking' => $booking];
 
-        $subject = 'Seepferdchen Garde — Buchung bestätigt';
-        $text = $this->twig->render('email/booking_owner_confirmed.txt.twig', $context);
-        $html = $this->twig->render('email/booking_owner_confirmed.html.twig', $context);
+        // Determine locale from current request (default to 'de')
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
+
+        $subject = 'de' === $locale
+            ? 'Hütte9 — Buchung bestätigt'
+            : 'Hütte9 — Booking Confirmed';
+        $text = $this->twig->render("email/booking_owner_confirmed.{$locale}.txt.twig", $context);
+        $html = $this->twig->render("email/booking_owner_confirmed.{$locale}.html.twig", $context);
 
         $email = (new Email())
             ->from($from)
             ->to($toOwner)
-            ->replyTo(new Address($booking->getParentEmail(), $booking->getParentName()))
+            ->replyTo(new Address($booking->getContactEmail(), $booking->getContactName()))
             ->subject($subject)
             ->text($text)
             ->html($html);

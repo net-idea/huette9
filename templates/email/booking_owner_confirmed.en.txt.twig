@@ -1,0 +1,18 @@
+New confirmed booking
+
+A booking request has just been confirmed by the guest.
+
+BOOKING DETAILS:
+- Arrival Date: {{ booking.arrivalDate|date('d.m.Y') }}
+- Departure Date: {{ booking.departureDate|date('d.m.Y') }}
+- Number of Persons: {{ booking.numberOfPersons }}
+- Guest: {{ booking.contactName }}
+- Email: {{ booking.contactEmail }}
+{% if booking.contactPhone %}- Phone: {{ booking.contactPhone }}
+{% endif %}{% if booking.notes %}- Notes: {{ booking.notes }}
+{% endif %}- Confirmed At: {{ booking.confirmedAt|date('d.m.Y H:i') }}
+
+NEXT STEPS:
+Please contact the guest to finalize the booking and clarify final details.
+
+Hütte9 Booking Management

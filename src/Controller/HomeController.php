@@ -16,11 +16,11 @@ class HomeController extends AbstractController
     public function index(Request $request, Environment $twig): Response
     {
         $locale = $request->getLocale();
-        $template = sprintf('home/index.%s.html.twig', $locale);
+        $template = sprintf('pages/home.%s.html.twig', $locale);
 
         // Fallback to English if locale template doesn't exist
         if (!$twig->getLoader()->exists($template)) {
-            $template = 'home/index.en.html.twig';
+            $template = 'pages/home.en.html.twig';
         }
 
         return $this->render($template);

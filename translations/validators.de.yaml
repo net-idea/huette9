@@ -1,9 +1,14 @@
-# Kontaktformular Validierungsmeldungen
-Please enter your name.: Bitte geben Sie Ihren Namen ein.
-Name must be at least {{ limit }} characters long.: Der Name muss mindestens {{ limit }} Zeichen lang sein.
-Name cannot be longer than {{ limit }} characters.: Der Name darf nicht länger als {{ limit }} Zeichen sein.
-Please enter your email address.: Bitte geben Sie Ihre E-Mail-Adresse ein.
-Please enter a valid email address.: Bitte geben Sie eine gültige E-Mail-Adresse ein.
-Subject cannot be longer than {{ limit }} characters.: Der Betreff darf nicht länger als {{ limit }} Zeichen sein.
-Please enter a message.: Bitte geben Sie eine Nachricht ein.
-Message must be at least {{ limit }} characters long.: Die Nachricht muss mindestens {{ limit }} Zeichen lang sein.
+booking.validation.arrival_date_required: "Bitte ein Anreisedatum wählen."
+booking.validation.departure_date_required: "Bitte ein Abreisedatum wählen."
+booking.validation.persons_required: "Bitte die Anzahl der Personen angeben."
+booking.validation.persons_invalid: "Bitte eine Zahl zwischen 1 und 20 eingeben."
+booking.validation.name_required: "Bitte Ihren Namen eingeben."
+booking.validation.name_min: "Ihr Name muss mindestens {{ limit }} Zeichen lang sein."
+booking.validation.name_max: "Ihr Name darf nicht länger als {{ limit }} Zeichen sein."
+booking.validation.email_required: "Bitte Ihre E-Mail-Adresse eingeben."
+booking.validation.email_invalid: "Bitte eine gültige E-Mail-Adresse eingeben."
+booking.validation.phone_required: "Bitte Ihre Telefonnummer eingeben."
+booking.validation.phone_min: "Ihre Telefonnummer muss mindestens {{ limit }} Zeichen haben."
+booking.validation.phone_max: "Ihre Telefonnummer darf nicht länger als {{ limit }} Zeichen sein."
+booking.validation.message_max: "Ihre Nachricht darf nicht länger als {{ limit }} Zeichen sein."
+booking.validation.data_consent_required: "Sie müssen der Datenverarbeitung zustimmen."

@@ -193,6 +193,14 @@ class FormBookingService extends AbstractFormService
         return self::CONFIRM_STATUS_OK;
     }
 
+    /**
+     * Public alias for confirmByToken (used by controller).
+     */
+    public function confirmBooking(string $token): string
+    {
+        return $this->confirmByToken($token);
+    }
+
     public function getFormBooking(): ?FormBookingEntity
     {
         if ($this->restoredBooking instanceof FormBookingEntity) {
@@ -269,9 +277,16 @@ class FormBookingService extends AbstractFormService
     private function hydrateBookingFromArray(array $data): FormBookingEntity
     {
         $booking = new FormBookingEntity();
-        $booking->setCoursePeriod($data['coursePeriod'] ?? '');
-        $booking->setDesiredTimeSlot($data['desiredTimeSlot'] ?? '');
-        $booking->setChildName($data['childName'] ?? '');
+
+        if (!empty($data['arrivalDate'])) {
+            $booking->setArrivalDate(new DateTimeImmutable((string)$data['arrivalDate']));
+        }
+
+        if (!empty($data['departureDate'])) {
+            $booking->setDepartureDate(new DateTimeImmutable((string)$data['departureDate']));
+        }
+
+        $booking->setNumberOfPersons($data['numberOfPersons'] ?? '');
 
         if (!empty($data['childBirthdate'])) {
             $booking->setChildBirthdate(new DateTimeImmutable((string)$data['childBirthdate']));
@@ -280,11 +295,11 @@ class FormBookingService extends AbstractFormService
         $booking->setChildAddress($data['childAddress'] ?? '');
         $booking->setHasSwimExperience((bool)($data['hasSwimExperience'] ?? false));
         $booking->setSwimExperienceDetails($data['swimExperienceDetails'] ?? null);
-        $booking->setHealthNotes($data['healthNotes'] ?? null);
+        $booking->setNotes($data['notes'] ?? null);
         $booking->setMaySwimWithoutAid((bool)($data['maySwimWithoutAid'] ?? false));
-        $booking->setParentName($data['parentName'] ?? '');
-        $booking->setParentPhone($data['parentPhone'] ?? null);
-        $booking->setParentEmail($data['parentEmail'] ?? '');
+        $booking->setContactName($data['contactName'] ?? '');
+        $booking->setContactPhone($data['contactPhone'] ?? null);
+        $booking->setContactEmail($data['contactEmail'] ?? '');
         $booking->setIsMemberOfClub((bool)($data['isMemberOfClub'] ?? false));
         $booking->setPaymentMethod($data['paymentMethod'] ?? '');
         $booking->setParticipationConsent((bool)($data['participationConsent'] ?? false));
@@ -303,18 +318,18 @@ class FormBookingService extends AbstractFormService
     private function dehydrateBookingToArray(FormBookingEntity $data): array
     {
         return [
-            'coursePeriod'          => $data->getCoursePeriod(),
-            'desiredTimeSlot'       => $data->getDesiredTimeSlot(),
-            'childName'             => $data->getChildName(),
+            'arrivalDate'           => $data->getArrivalDate()?->format('Y-m-d'),
+            'departureDate'         => $data->getDepartureDate()?->format('Y-m-d'),
+            'numberOfPersons'       => $data->getNumberOfPersons(),
             'childBirthdate'        => $data->getChildBirthdate()?->format('Y-m-d'),
             'childAddress'          => $data->getChildAddress(),
             'hasSwimExperience'     => $data->hasSwimExperience(),
             'swimExperienceDetails' => $data->getSwimExperienceDetails(),
-            'healthNotes'           => $data->getHealthNotes(),
+            'notes'                 => $data->getNotes(),
             'maySwimWithoutAid'     => $data->maySwimWithoutAid(),
-            'parentName'            => $data->getParentName(),
-            'parentPhone'           => $data->getParentPhone(),
-            'parentEmail'           => $data->getParentEmail(),
+            'contactName'           => $data->getContactName(),
+            'contactPhone'          => $data->getContactPhone(),
+            'contactEmail'          => $data->getContactEmail(),
             'isMemberOfClub'        => $data->isMemberOfClub(),
             'paymentMethod'         => $data->getPaymentMethod(),
             'participationConsent'  => $data->hasParticipationConsent(),

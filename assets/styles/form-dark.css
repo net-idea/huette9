@@ -1,0 +1,108 @@
+/* ============================================
+   FORM STYLES - Dark Theme
+   ============================================ */
+
+:root[data-bs-theme='dark'] {
+  --input-bg: rgb(255 255 255 / 8%);
+  --input-border: rgb(255 255 255 / 20%);
+  --input-focus-bg: rgb(255 255 255 / 12%);
+  --input-focus-border: #0d6efd;
+  --input-shadow: 0 4px 15px rgb(0 0 0 / 30%);
+  --input-focus-shadow: 0 6px 20px rgb(13 110 253 / 40%);
+  --input-label-color: rgb(255 255 255 / 65%);
+  --input-label-bg: #1a1f3a;
+}
+
+/* Page Gradient Background for Greater Plasticity */
+:root[data-bs-theme='dark'] body {
+  background: linear-gradient(135deg,
+    #0a0e27 0%,
+    #1a1f3a 25%,
+    #2a2f4a 50%,
+    #1a1f3a 75%,
+    #0a0e27 100%);
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: gradient-shift-dark 15s ease infinite;
+}
+
+@keyframes gradient-shift-dark {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Form Labels */
+:root[data-bs-theme='dark'] .form-label {
+  color: rgb(255 255 255 / 65%);
+}
+
+:root[data-bs-theme='dark'] .form-control:focus ~ .form-label,
+:root[data-bs-theme='dark'] .form-control:not(:placeholder-shown) ~ .form-label {
+  color: #93c5fd;
+  background: #1a1f3a;
+}
+
+/* Form Controls */
+:root[data-bs-theme='dark'] .form-control {
+  color: rgb(255 255 255 / 95%);
+  background: rgb(255 255 255 / 8%);
+  border-color: rgb(255 255 255 / 20%);
+}
+
+:root[data-bs-theme='dark'] .form-control:focus {
+  background: rgb(255 255 255 / 12%);
+  border-color: #0d6efd;
+  color: rgb(255 255 255 / 95%);
+}
+
+/* Checkboxes */
+:root[data-bs-theme='dark'] .form-check-input {
+  background: rgb(255 255 255 / 8%);
+  border-color: rgb(255 255 255 / 20%);
+}
+
+:root[data-bs-theme='dark'] .form-check-label {
+  color: rgb(255 255 255 / 85%);
+}
+
+/* Section Headers */
+:root[data-bs-theme='dark'] .booking-form h5,
+:root[data-bs-theme='dark'] .contact-form h5 {
+  color: #93c5fd;
+  border-bottom-color: rgb(13 110 253 / 20%);
+}
+
+/* Helper Text */
+:root[data-bs-theme='dark'] .form-text {
+  color: rgb(255 255 255 / 50%);
+}
+
+/* Alert Success */
+:root[data-bs-theme='dark'] .alert-success {
+  background: rgb(16 185 129 / 15%);
+  color: #86efac;
+}
+
+/* Alert Danger */
+:root[data-bs-theme='dark'] .alert-danger {
+  background: rgb(239 68 68 / 15%);
+  color: #fca5a5;
+}
+
+/* Info Box */
+:root[data-bs-theme='dark'] .booking-form .bg-light,
+:root[data-bs-theme='dark'] .contact-form .bg-light {
+  background: rgb(13 110 253 / 10%) !important;
+  border-color: rgb(13 110 253 / 20%);
+}
+
+:root[data-bs-theme='dark'] .booking-form .bg-light h6,
+:root[data-bs-theme='dark'] .contact-form .bg-light h6 {
+  color: #93c5fd;
+}
+
+:root[data-bs-theme='dark'] .booking-form .bg-light li,
+:root[data-bs-theme='dark'] .contact-form .bg-light li {
+  color: rgb(255 255 255 / 75%);
+}

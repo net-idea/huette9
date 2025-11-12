@@ -1,0 +1,27 @@
+Please confirm your booking
+
+Hello {{ booking.contactName }},
+
+Thank you for your booking request at Hütte9!
+
+Please confirm your booking via the following link:
+
+{{ confirmUrl }}
+
+SUMMARY OF YOUR REQUEST:
+- Arrival Date: {{ booking.arrivalDate|date('d.m.Y') }}
+- Departure Date: {{ booking.departureDate|date('d.m.Y') }}
+- Number of Persons: {{ booking.numberOfPersons }}
+- Guest: {{ booking.contactName }}
+- Email: {{ booking.contactEmail }}
+{% if booking.contactPhone %}- Phone: {{ booking.contactPhone }}
+{% endif %}{% if booking.notes %}- Notes: {{ booking.notes }}
+{% endif %}
+
+NEXT STEPS:
+After you confirm this email, we will contact you promptly to finalize the booking and clarify final details.
+
+If you did not make this request, please ignore this email.
+
+Best regards,
+Hütte9 Team

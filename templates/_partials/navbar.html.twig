@@ -4,21 +4,12 @@
       <span class="brand-icon me-2">🏡</span>
       <span class="brand-text">Hütte9</span>
     </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item">
-          <a class="nav-link px-3 {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}" href="{{ path('app_home') }}">
-            {{ 'nav.home'|trans }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link px-3 {{ app.request.get('_route') == 'app_contact' ? 'active' : '' }}" href="{{ path('app_contact') }}">
-            {{ 'nav.contact'|trans }}
-          </a>
-        </li>
+        <li class="nav-item"><a class="nav-link px-3 {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}" href="{{ path('app_home') }}">{{ 'nav.home'|trans }}</a></li>
+        <li class="nav-item"><a class="nav-link px-3 {{ app.request.get('_route') == 'app_booking' ? 'active' : '' }}" href="{{ path('app_booking') }}">{{ 'nav.booking'|trans }}</a></li>
+        <li class="nav-item"><a class="nav-link px-3 {{ app.request.get('_route') == 'app_contact' ? 'active' : '' }}" href="{{ path('app_contact') }}">{{ 'nav.contact'|trans }}</a></li>
         <li class="nav-item ms-lg-2">
           <div class="dropdown">
             <button class="btn btn-theme-toggle dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,12 +18,32 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0">
               <li>
-                <a class="dropdown-item d-flex align-items-center gap-2 {{ app.request.locale == 'en' ? 'active' : '' }}" href="{{ path('app_locale_switch', {locale: 'en'}) }}">
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 {{ app.request.locale == 'en' ? 'active' : '' }}"
+                  href="{{
+                  path(
+                    'app_locale_switch',
+                    {
+                      locale: 'en'
+                    }
+                  )
+                  }}"
+                >
                   <span>🇬🇧</span> {{ 'language.english'|trans }}
                 </a>
               </li>
               <li>
-                <a class="dropdown-item d-flex align-items-center gap-2 {{ app.request.locale == 'de' ? 'active' : '' }}" href="{{ path('app_locale_switch', {locale: 'de'}) }}">
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 {{ app.request.locale == 'de' ? 'active' : '' }}"
+                  href="{{
+                  path(
+                    'app_locale_switch',
+                    {
+                      locale: 'de'
+                    }
+                  )
+                  }}"
+                >
                   <span>🇩🇪</span> {{ 'language.german'|trans }}
                 </a>
               </li>
@@ -46,21 +57,9 @@
               <span class="d-none d-lg-inline">Theme</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0">
-              <li>
-                <button class="dropdown-item d-flex align-items-center gap-2" data-theme="system">
-                  <span>💻</span> {{ 'theme.system'|trans }}
-                </button>
-              </li>
-              <li>
-                <button class="dropdown-item d-flex align-items-center gap-2" data-theme="light">
-                  <span>☀️</span> {{ 'theme.light'|trans }}
-                </button>
-              </li>
-              <li>
-                <button class="dropdown-item d-flex align-items-center gap-2" data-theme="dark">
-                  <span>🌙</span> {{ 'theme.dark'|trans }}
-                </button>
-              </li>
+              <li><button class="dropdown-item d-flex align-items-center gap-2" data-theme="system"><span>💻</span> {{ 'theme.system'|trans }}</button></li>
+              <li><button class="dropdown-item d-flex align-items-center gap-2" data-theme="light"><span>☀️</span> {{ 'theme.light'|trans }}</button></li>
+              <li><button class="dropdown-item d-flex align-items-center gap-2" data-theme="dark"><span>🌙</span> {{ 'theme.dark'|trans }}</button></li>
             </ul>
           </div>
         </li>

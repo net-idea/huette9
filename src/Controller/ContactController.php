@@ -26,13 +26,14 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted()) {
             $redirect = $contactService->handle();
+
             if ($redirect) {
                 // Check for success or error in query params
-                if ($request->query->get('submit') === '1') {
+                if ('1' === $request->query->get('submit')) {
                     $this->addFlash('success', $translator->trans('contact.success'));
-                } elseif ($request->query->get('error') === 'mail') {
+                } elseif ('mail' === $request->query->get('error')) {
                     $this->addFlash('error', $translator->trans('error.mail_send_failed'));
-                } elseif ($request->query->get('error') === 'rate') {
+                } elseif ('rate' === $request->query->get('error')) {
                     $this->addFlash('error', $translator->trans('error.rate_limit'));
                 }
 
@@ -42,11 +43,11 @@ class ContactController extends AbstractController
 
         // Select template based on locale
         $locale = $request->getLocale();
-        $template = sprintf('contact/index.%s.html.twig', $locale);
+        $template = sprintf('pages/contact.%s.html.twig', $locale);
 
         // Fallback to English if locale template doesn't exist
         if (!$twig->getLoader()->exists($template)) {
-            $template = 'contact/index.en.html.twig';
+            $template = 'pages/contact.en.html.twig';
         }
 
         return $this->render($template, [

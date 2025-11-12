@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kontakt - Hütte9{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      {# Header #}
+      <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">Kontaktieren Sie uns</h1>
+        <p class="lead text-muted">Wir freuen uns auf Ihre Nachricht</p>
+      </div>
+
+      <div class="row g-4">
+        {# Contact Information #}
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="sticky-lg-top" style="top: 2rem">
+            <h2 class="h3 fw-bold mb-4">Kontaktinformationen</h2>
+            <p class="text-muted mb-5">Haben Sie Fragen zur Hütte9 oder möchten Sie Ihren Aufenthalt buchen? Füllen Sie das Formular aus und wir melden uns so schnell wie möglich bei Ihnen.</p>
+
+            <div class="contact-info-list">
+              <div class="contact-info-item glass-card p-4 mb-3">
+                <div class="d-flex gap-3">
+                  <div class="contact-icon">📧</div>
+                  <div>
+                    <h5 class="h6 fw-bold mb-1">E-Mail</h5>
+                    <p class="text-muted mb-0">info@huette9.de</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-info-item glass-card p-4 mb-3">
+                <div class="d-flex gap-3">
+                  <div class="contact-icon">📍</div>
+                  <div>
+                    <h5 class="h6 fw-bold mb-1">Standort</h5>
+                    <p class="text-muted mb-0">Dormagen, Deutschland</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-info-item glass-card p-4">
+                <div class="d-flex gap-3">
+                  <div class="contact-icon">⏰</div>
+                  <div>
+                    <h5 class="h6 fw-bold mb-1">Reaktionszeit</h5>
+                    <p class="text-muted mb-0">Normalerweise innerhalb von 24 Stunden</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {# Contact Form #}
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="glass-card p-4 p-md-5">
+            <h2 class="h4 fw-bold mb-4">Senden Sie uns eine Nachricht</h2>
+
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success d-flex align-items-center gap-2 mb-4" role="alert">
+              <i class="bi bi-check-circle-fill"></i>
+              <span>{{ message }}</span>
+            </div>
+            {% endfor %} {% for message in app.flashes('error') %}
+            <div class="alert alert-danger d-flex align-items-center gap-2 mb-4" role="alert">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+              <span>{{ message }}</span>
+            </div>
+            {% endfor %} {{ form_start(form, {'attr': {'class': 'contact-form', 'novalidate': 'novalidate'}}) }}
+            <div class="row g-3">
+              {# Name #}
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_widget(form.name, {attr: {class: 'form-control'}}) }}
+                  <label for="{{ form.name.vars.id }}" class="form-label">
+                    {{ form.name.vars.label|trans }}
+                    <span class="text-danger">*</span>
+                  </label>
+                  {{ form_errors(form.name) }}
+                </div>
+              </div>
+
+              {# Email #}
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_widget(form.emailAddress, {attr: {class: 'form-control'}}) }}
+                  <label for="{{ form.emailAddress.vars.id }}" class="form-label">
+                    {{ form.emailAddress.vars.label|trans }}
+                    <span class="text-danger">*</span>
+                  </label>
+                  {{ form_errors(form.emailAddress) }}
+                </div>
+              </div>
+
+              {# Phone #}
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_widget(form.phone, {attr: {class: 'form-control'}}) }}
+                  <label for="{{ form.phone.vars.id }}" class="form-label">
+                    {{ form.phone.vars.label|trans }}
+                  </label>
+                  {{ form_errors(form.phone) }}
+                </div>
+              </div>
+
+              {# Subject #}
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_widget(form.subject, {attr: {class: 'form-control'}}) }}
+                  <label for="{{ form.subject.vars.id }}" class="form-label">
+                    {{ form.subject.vars.label|trans }}
+                  </label>
+                  {{ form_errors(form.subject) }}
+                </div>
+              </div>
+
+              {# Message #}
+              <div class="col-12">
+                <div class="form-group">
+                  {{ form_widget(form.message, {attr: {class: 'form-control', rows: 5}}) }}
+                  <label for="{{ form.message.vars.id }}" class="form-label">
+                    {{ form.message.vars.label|trans }}
+                    <span class="text-danger">*</span>
+                  </label>
+                  {{ form_errors(form.message) }}
+                </div>
+              </div>
+
+              {# Consent Checkbox #}
+              <div class="col-12">
+                <div class="form-check">
+                  {{ form_widget(form.consent, {attr: {class: 'form-check-input'}}) }}
+                  <label class="form-check-label" for="{{ form.consent.vars.id }}">
+                    {{ form.consent.vars.label|trans }}
+                    <span class="text-danger">*</span>
+                  </label>
+                  {{ form_errors(form.consent) }}
+                </div>
+              </div>
+
+              {# Copy Checkbox #}
+              <div class="col-12">
+                <div class="form-check">
+                  {{ form_widget(form.copy, {attr: {class: 'form-check-input'}}) }}
+                  <label class="form-check-label" for="{{ form.copy.vars.id }}">
+                    {{ form.copy.vars.label|trans }}
+                  </label>
+                  {{ form_errors(form.copy) }}
+                </div>
+              </div>
+
+              {# Honeypot fields (hidden) #}
+              <div style="position: absolute; left: -9999px">
+                {{ form_row(form.website) }}
+                {{ form_row(form.emailrep) }}
+              </div>
+
+              {# Submit Button #}
+              <div class="col-12 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                  <i class="bi bi-send me-2"></i>
+                  Nachricht senden
+                </button>
+              </div>
+            </div>
+            {{ form_end(form) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirm Booking - Hütte9{% endblock %}
+
+{% block body %}
+  <div class="container py-5">
+    {# Unified header like contact pages #}
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold mb-3">Booking Confirmation</h1>
+          <p class="lead text-muted">
+            Status of your booking confirmation
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        {% if status == 'ok' %}
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Success!</h4>
+            <p>
+              {{ 'booking.confirm.ok'|trans }}
+            </p>
+            <hr />
+            <p class="mb-0">
+              You can now log out or return to the home page.
+            </p>
+          </div>
+        {% elseif status == 'already' %}
+          <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Information</h4>
+            <p>
+              {{ 'booking.confirm.already'|trans }}
+            </p>
+            <hr />
+            <p class="mb-0">
+              This booking has already been confirmed. If you have any questions, please contact us.
+            </p>
+          </div>
+        {% else %}
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Error</h4>
+            <p>
+              {{ 'booking.confirm.notfound'|trans }}
+            </p>
+            <hr />
+            <p class="mb-0">
+              The confirmation link is invalid or has expired. Please try again or contact us.
+            </p>
+          </div>
+        {% endif %}
+
+        <div class="mt-4">
+          <a href="{{ path('app_home') }}" class="btn btn-primary">Back to Home</a>
+          <a href="{{ path('app_booking') }}" class="btn btn-outline-primary">New Request</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

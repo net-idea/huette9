@@ -11,9 +11,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Shared theme styles
 import './styles/theme.css';
 
-// Theme-specific styles
-import './styles/theme-light.css';
+// Light and Dark theme styles
 import './styles/theme-dark.css';
+import './styles/theme-light.css';
+
+// Form styles
+import './styles/form.css';
+
+// Light and Dark form styles
+import './styles/form-dark.css';
+import './styles/form-light.css';
 
 // Import Bootstrap JavaScript (local bundle with Popper)
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';

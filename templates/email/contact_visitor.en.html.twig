@@ -1,0 +1,37 @@
+{% extends 'email/base.html.twig' %}
+
+{% block title %}Your Contact Request{% endblock %}
+
+{% block header_title %}Hütte9{% endblock %}
+
+{% block body %}
+  <h2 class="h1">Thank You for Your Message</h2>
+  <p class="p">
+    Hello {{ contact.name|e }},
+  </p>
+  <p class="p">
+    I have received your request through my contact form and will get back to you personally as soon as possible.
+  </p>
+
+  <h3 class="h2">Your Information</h3>
+  <p class="p">
+    <span class="label">Name:</span> {{ contact.name|e }}
+  </p>
+  <p class="p">
+    <span class="label">Email:</span> {{ contact.emailAddress|e }}
+  </p>
+  {% if contact.phone %}
+    <p class="p">
+      <span class="label">Phone:</span> {{ contact.phone|e }}
+    </p>
+  {% endif %}
+
+  <h3 class="h2">Your Message</h3>
+  <div class="box">
+    {{ contact.messageHtml|raw }}
+  </div>
+
+  <p class="meta">
+    Note: This email confirms the receipt of your message. If you have any questions, you can reply directly to this email.
+  </p>
+{% endblock %}

@@ -1,50 +1,143 @@
 /* Light theme overrides */
 :root[data-bs-theme='light'] {
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --glass-bg: rgb(255 255 255 / 70%);
+  --glass-border: rgb(255 255 255 / 30%);
+  --glass-shadow: 0 8px 32px 0 rgb(31 38 135 / 15%);
+
+  /* Form specific - Light theme */
+  --input-bg: rgb(255 255 255 / 80%);
+  --input-border: rgb(0 0 0 / 15%);
+  --input-focus-bg: rgb(255 255 255 / 95%);
+  --input-focus-border: var(--brand-primary);
+  --input-shadow: 0 4px 15px rgb(0 0 0 / 8%);
+  --input-focus-shadow: 0 6px 20px rgb(13 110 253 / 25%);
+  --input-text-color: #212529;
+  --input-placeholder-color: rgb(108 117 125 / 60%);
 }
 
 :root[data-bs-theme='light'] body {
-  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+  background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
 }
 
 :root[data-bs-theme='light'] .navbar-glass {
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgb(255 255 255 / 95%);
+  border-bottom: 1px solid rgb(0 0 0 / 5%);
 }
 
+/* Glass Cards - Sanfterer Hover */
 :root[data-bs-theme='light'] .glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  background: rgb(255 255 255 / 80%);
+  border: 1px solid rgb(0 0 0 / 5%);
+  box-shadow: 0 8px 32px 0 rgb(31 38 135 / 10%);
 }
 
 :root[data-bs-theme='light'] .glass-card:hover {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+  background: rgb(255 255 255 / 95%);
+  box-shadow: 0 10px 35px 0 rgb(31 38 135 / 15%);
+  transform: translateY(-2px); /* Reduziert von -5px */
 }
 
 :root[data-bs-theme='light'] .btn-theme-toggle {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgb(0 0 0 / 5%);
+  border: 1px solid rgb(0 0 0 / 10%);
   color: var(--bs-body-color);
 }
 
 :root[data-bs-theme='light'] .btn-theme-toggle:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgb(0 0 0 / 10%);
 }
 
+/* ============================================
+   FORM CONTROLS - Light Theme
+   ============================================ */
+
+:root[data-bs-theme='light'] .form-control,
+:root[data-bs-theme='light'] .booking-form .form-control,
+:root[data-bs-theme='light'] .contact-form .form-control {
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  color: var(--input-text-color);
+  border-radius: 0.75rem; /* Reduziert von 0.875rem */
+}
+
+:root[data-bs-theme='light'] .form-control::placeholder,
+:root[data-bs-theme='light'] .booking-form .form-control::placeholder,
+:root[data-bs-theme='light'] .contact-form .form-control::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+/* Focus State - Light Theme */
+:root[data-bs-theme='light'] .form-control:focus,
+:root[data-bs-theme='light'] .booking-form .form-control:focus,
+:root[data-bs-theme='light'] .contact-form .form-control:focus {
+  background: var(--input-focus-bg);
+  border-color: var(--input-focus-border);
+  box-shadow: var(--input-focus-shadow);
+  transform: translateY(-1px); /* Reduziert von -2px */
+}
+
+/* Hover State - Light Theme - Sanfter */
+:root[data-bs-theme='light'] .form-control:hover:not(:focus),
+:root[data-bs-theme='light'] .booking-form .form-control:hover:not(:focus),
+:root[data-bs-theme='light'] .contact-form .form-control:hover:not(:focus) {
+  border-color: rgb(13 110 253 / 30%);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  transform: none; /* Kein Transform beim Hover */
+}
+
+/* Checkboxes - Light Theme */
+:root[data-bs-theme='light'] .form-check-input,
+:root[data-bs-theme='light'] .booking-form .form-check-input,
+:root[data-bs-theme='light'] .contact-form .form-check-input {
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+}
+
+:root[data-bs-theme='light'] .form-check-input:hover {
+  border-color: var(--brand-primary);
+  transform: scale(1.02); /* Reduziert von 1.05 */
+  box-shadow: 0 2px 8px rgb(13 110 253 / 20%);
+}
+
+/* Feature Cards - Sanfterer Hover */
+:root[data-bs-theme='light'] .feature-card:hover {
+  transform: translateY(-4px) scale(1.01); /* Reduziert von -8px und 1.02 */
+}
+
+/* Old form-control-glass class (Fallback) */
 :root[data-bs-theme='light'] .form-control-glass {
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
 }
 
 :root[data-bs-theme='light'] .form-control-glass:focus {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: var(--brand-primary);
+  background: var(--input-focus-bg);
+  border-color: var(--input-focus-border);
 }
 
 :root[data-bs-theme='light'] .bg-pattern {
   background-color: #f8f9fa;
+}
+
+/* Footer - Light Theme */
+:root[data-bs-theme='light'] footer {
+  background: rgb(248 249 250 / 95%) !important;
+  border-top: 1px solid rgb(0 0 0 / 5%) !important;
+}
+
+:root[data-bs-theme='light'] footer .text-muted {
+  color: #6c757d !important;
+}
+
+:root[data-bs-theme='light'] footer a {
+  color: #6c757d !important;
+  transition: color 0.3s ease;
+}
+
+:root[data-bs-theme='light'] footer a:hover {
+  color: var(--brand-primary) !important;
+}
+
+:root[data-bs-theme='light'] footer hr {
+  border-color: rgb(0 0 0 / 5%) !important;
 }

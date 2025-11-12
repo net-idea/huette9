@@ -1,0 +1,56 @@
+{% extends 'email/base.html.twig' %}
+
+{% block title %}Neue Buchungsbestätigung{% endblock %}
+
+{% block header_title %}Hütte9 - Buchungsverwaltung{% endblock %}
+
+{% block body %}
+  <h2 class="h1">Neue bestätigte Buchung</h2>
+  <p>
+    Eine Buchungsanfrage wurde soeben vom Gast bestätigt.
+  </p>
+
+  <h3 class="h2">Buchungsdetails</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem">
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold; width: 40%">Ankunftsdatum:</td>
+      <td style="padding: 0.5rem">{{ booking.arrivalDate|date('d.m.Y') }}</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">Abreisedatum:</td>
+      <td style="padding: 0.5rem">{{ booking.departureDate|date('d.m.Y') }}</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">Anzahl Personen:</td>
+      <td style="padding: 0.5rem">{{ booking.numberOfPersons }} Person(en)</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">Gast:</td>
+      <td style="padding: 0.5rem">{{ booking.contactName }}</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">E-Mail:</td>
+      <td style="padding: 0.5rem">{{ booking.contactEmail }}</td>
+    </tr>
+    {% if booking.contactPhone %}
+      <tr style="border-bottom: 1px solid #ddd">
+        <td style="padding: 0.5rem; font-weight: bold">Telefon:</td>
+        <td style="padding: 0.5rem">{{ booking.contactPhone }}</td>
+      </tr>
+    {% endif %} {% if booking.notes %}
+      <tr style="border-bottom: 1px solid #ddd">
+        <td style="padding: 0.5rem; font-weight: bold">Anmerkungen:</td>
+        <td style="padding: 0.5rem">{{ booking.notes }}</td>
+      </tr>
+    {% endif %}
+    <tr style="border-bottom: 1px solid #ddd">
+      <td style="padding: 0.5rem; font-weight: bold">Bestätigt am:</td>
+      <td style="padding: 0.5rem">{{ booking.confirmedAt|date('d.m.Y H:i') }}</td>
+    </tr>
+  </table>
+
+  <h3 class="h2">Nächste Schritte</h3>
+  <p>
+    Bitte kontaktieren Sie den Gast, um die Buchung zu finalisieren und letzte Details zu klären.
+  </p>
+{% endblock %}

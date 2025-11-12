@@ -1,0 +1,31 @@
+<footer class="border-top py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <h6 class="fw-bold mb-2">Hütte9</h6>
+        <p class="text-muted small mb-0">
+          {{ 'Eine gemütliche Wohnung in Dormagen zwischen Köln und Düsseldorf'|trans }}
+        </p>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex gap-3 justify-content-md-end">
+          {% if app.request.locale == 'de' %}
+            <a href="{{ path('app_datenschutz') }}" class="text-decoration-none text-muted small">{{ 'nav.datenschutz'|trans }}</a>
+            <a href="{{ path('app_impressum') }}" class="text-decoration-none text-muted small">{{ 'nav.impressum'|trans }}</a>
+          {% else %}
+            <a href="{{ path('app_privacy') }}" class="text-decoration-none text-muted small">Privacy</a>
+            <a href="{{ path('app_imprint') }}" class="text-decoration-none text-muted small">Imprint</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <hr class="my-3" />
+    <div class="row">
+      <div class="col-12">
+        <p class="text-muted text-center small mb-0">
+          &copy; {{ 'now'|date('Y') }} Hütte9. {{ 'Alle Rechte vorbehalten.'|trans }}
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

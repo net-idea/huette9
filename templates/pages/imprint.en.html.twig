@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Imprint - Hütte9{% endblock %}
+
+{% block body %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h1 class="mb-4">Imprint</h1>
+
+        <div class="legal-content">
+          <h2>Information according to § 5 TMG (Telemedien Act)</h2>
+
+          <h3>Website Operator:</h3>
+          <p>
+            <strong>Hütte9</strong><br />
+            [Street and House Number]<br />
+            [Postal Code and City]<br />
+            Germany
+          </p>
+
+          <h3>Contact Information:</h3>
+          <p>
+            <strong>Phone:</strong> [Your Phone Number]<br />
+            <strong>Email:</strong> [Your Email Address]<br />
+            <strong>Website:</strong> www.huette9.de
+          </p>
+
+          <h3>Owner and Management:</h3>
+          <p>
+            [Your Name]<br />
+            [Additional owners or managers, if applicable]
+          </p>
+
+          <h3>Commercial Register:</h3>
+          <p>
+            Registry Court: [Competent Registry Court]<br />
+            Registration Number: [Commercial Registration Number, if applicable]
+          </p>
+
+          <h3>VAT ID:</h3>
+          <p>
+            VAT Identification Number according to § 27a UStG: [Your VAT ID]
+          </p>
+
+          <h2>Liability for Content</h2>
+          <p>
+            The contents of this website are created and maintained with great care. Nevertheless, we cannot completely exclude that individual contents may be incorrect, incomplete, or outdated. We are not liable for damages that result from the use or non-use of the information provided.
+          </p>
+
+          <h2>Liability for Links</h2>
+          <p>
+            Our website contains links to external websites. We have no influence on their content and design. The responsibility for the linked content lies exclusively with their operators. We expressly distance ourselves from all content that violates applicable law.
+          </p>
+
+          <h2>Copyright</h2>
+          <p>
+            The contents published on this website are subject to German copyright law. The reproduction, processing, distribution, and any other use outside the scope of copyright law require written permission.
+          </p>
+
+          <h2>Data Protection</h2>
+          <p>
+            Information about the processing of personal data can be found in our
+            <a href="{{ path('app_privacy') }}">Privacy Policy</a>.
+          </p>
+
+          <h2>Legal Notices</h2>
+          <p>
+            This website is subject to German law. The exclusive jurisdiction for all claims arising from or related to this website is with the courts at the seat of the operator.
+          </p>
+
+          <h2>Contact for Defects and Complaints</h2>
+          <p>
+            If you discover errors or defects on this website, please notify us at:
+          </p>
+          <p>
+            <strong>Email:</strong> [Your Email Address]<br />
+            <strong>Phone:</strong> [Your Phone Number]
+          </p>
+
+          <p class="mt-4 text-muted">
+            <small>Last updated: November 2025</small>
+          </p>
+        </div>
+
+        <div class="mt-4">
+          <a href="{{ path('app_home') }}" class="btn btn-outline-primary">{{ 'Back to Home'|trans }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .legal-content h2 { margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 0.5rem; }
+
+    .legal-content h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
+
+    .legal-content p { line-height: 1.8; margin-bottom: 1rem; }
+  </style>
+{% endblock %}

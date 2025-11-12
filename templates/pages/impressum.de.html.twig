@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Impressum - Hütte9{% endblock %}
+
+{% block body %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h1 class="mb-4">Impressum</h1>
+
+        <div class="legal-content">
+          <h2>Angaben gemäß § 5 TMG (Telemediengesetz)</h2>
+
+          <h3>Betreiber der Website:</h3>
+          <p>
+            <strong>Hütte9</strong><br />
+            [Straße und Hausnummer]<br />
+            [PLZ und Ort]<br />
+            Deutschland
+          </p>
+
+          <h3>Kontaktinformationen:</h3>
+          <p>
+            <strong>Telefon:</strong> [Ihre Telefonnummer]<br />
+            <strong>E-Mail:</strong> [Ihre E-Mail-Adresse]<br />
+            <strong>Website:</strong> www.huette9.de
+          </p>
+
+          <h3>Inhaber und Geschäftsführung:</h3>
+          <p>
+            [Ihr Name]<br />
+            [Ggf. weitere Eigentümer oder Geschäftsführer]
+          </p>
+
+          <h3>Handelsregister:</h3>
+          <p>
+            Registergericht: [Zuständiges Registergericht]<br />
+            Registernummer: [Ggf. Handelsregisternummer]
+          </p>
+
+          <h3>Umsatzsteuer-ID:</h3>
+          <p>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [Ihre USt-IdNr.]
+          </p>
+
+          <h2>Haftung für Inhalte</h2>
+          <p>
+            Die Inhalte dieser Website werden mit großer Sorgfalt erstellt und gepflegt. Dennoch können wir nicht vollständig ausschließen, dass einzelne Inhalte fehlerhaft, unvollständig oder nicht mehr aktuell sind. Für Schäden, die durch die Nutzung oder Nichtnutzung der bereitgestellten Informationen entstehen, haften wir nicht.
+          </p>
+
+          <h2>Haftung für Links</h2>
+          <p>
+            Unsere Website enthält Links zu externen Websites. Wir haben keinen Einfluss auf deren Inhalte und Gestaltung. Die Verantwortung für die verlinkten Inhalte liegt ausschließlich bei deren Betreibern. Wir distanzieren uns ausdrücklich von allen Inhalten, die gegen geltende Gesetze verstoßen.
+          </p>
+
+          <h2>Urheberrecht</h2>
+          <p>
+            Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Verarbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen schriftlicher Zustimmung.
+          </p>
+
+          <h2>Datenschutz</h2>
+          <p>
+            Informationen zur Verarbeitung persönlicher Daten finden Sie in unserer
+            <a href="{{ path('app_datenschutz') }}">Datenschutzerklärung</a>.
+          </p>
+
+          <h2>Rechtliche Hinweise</h2>
+          <p>
+            Diese Website unterliegt deutschem Recht. Für alle Ansprüche aus oder im Zusammenhang mit dieser Website ist ausschließlich die Gerichtsbarkeit am Sitz des Betreibers zuständig.
+          </p>
+
+          <h2>Kontakt für Mängel und Beanstandungen</h2>
+          <p>
+            Sollten Sie Fehler oder Mängel auf dieser Website entdecken, bitten wir um eine Mitteilung unter:
+          </p>
+          <p>
+            <strong>E-Mail:</strong> [Ihre E-Mail-Adresse]<br />
+            <strong>Telefon:</strong> [Ihre Telefonnummer]
+          </p>
+
+          <p class="mt-4 text-muted">
+            <small>Zuletzt aktualisiert: November 2025</small>
+          </p>
+        </div>
+
+        <div class="mt-4">
+          <a href="{{ path('app_home') }}" class="btn btn-outline-primary">{{ 'zur Startseite'|trans }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .legal-content h2 { margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 0.5rem; }
+
+    .legal-content h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
+
+    .legal-content p { line-height: 1.8; margin-bottom: 1rem; }
+  </style>
+{% endblock %}

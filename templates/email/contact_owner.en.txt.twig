@@ -1,0 +1,22 @@
+Hello!
+
+The contact form has been filled out with the following information:
+
+Name: {{ contact.name }}
+Email Address: {{ contact.emailAddress }}
+Phone: {{ contact.phone|default('') }}
+
+Message:
+{{ contact.message }}
+
+---
+Meta:
+- IP: {{ contact.meta.ip }}
+- User-Agent: {{ contact.meta.userAgent }}
+- Time: {{ contact.meta.time }}
+- Host: {{ contact.meta.host }}
+
+Please contact the sender.
+
+Best regards
+The Contact Form on hütte9.de

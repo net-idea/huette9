@@ -1,0 +1,27 @@
+Bitte bestätigen Sie Ihre Buchung
+
+Hallo {{ booking.contactName }},
+
+vielen Dank für Ihre Buchungsanfrage auf Hütte9!
+
+Bitte bestätigen Sie Ihre Buchung über den folgenden Link:
+
+{{ confirmUrl }}
+
+ZUSAMMENFASSUNG IHRER ANFRAGE:
+- Ankunftsdatum: {{ booking.arrivalDate|date('d.m.Y') }}
+- Abreisedatum: {{ booking.departureDate|date('d.m.Y') }}
+- Anzahl Personen: {{ booking.numberOfPersons }}
+- Gast: {{ booking.contactName }}
+- E-Mail: {{ booking.contactEmail }}
+{% if booking.contactPhone %}- Telefon: {{ booking.contactPhone }}
+{% endif %}{% if booking.notes %}- Anmerkungen: {{ booking.notes }}
+{% endif %}
+
+NÄCHSTE SCHRITTE:
+Nachdem Sie diese E-Mail bestätigt haben, werden wir uns unverzüglich bei Ihnen melden, um die Buchung zu finalisieren und letzte Details zu klären.
+
+Wenn Sie diese Anfrage nicht veranlasst haben, ignorieren Sie diese E‑Mail.
+
+Mit freundlichen Grüßen,
+Hütte9 Team

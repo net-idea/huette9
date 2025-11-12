@@ -1,0 +1,18 @@
+{
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "plugins": ["@zackad/prettier-plugin-twig"],
+    "overrides": [
+        {
+            "files": "*.html.twig",
+            "options": {
+                "parser": "twig",
+                "printWidth": 768,
+                "twigSingleQuote": true
+            }
+        }
+    ]
+}

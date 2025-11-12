@@ -62,7 +62,11 @@ abstract class AbstractFormService
         }
 
         $form = $this->getForm();
-        $form->handleRequest($request);
+
+        // Avoid submitting the same form twice: only handle the request if not already submitted
+        if (!$form->isSubmitted()) {
+            $form->handleRequest($request);
+        }
 
         if (!$form->isSubmitted()) {
             return null;
