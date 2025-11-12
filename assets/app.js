@@ -1,10 +1,18 @@
-import './stimulus_bootstrap.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
+ * We recommend including the built version of this JavaScript file
+ * (and its CSS file) in your base layout (base.html.twig).
  */
+
+// Import Bootstrap CSS (Dark theme)
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Import Bootstrap JavaScript
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+// Import custom CSS with dark theater theme
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+// Start the Stimulus application
+import './bootstrap.js';
