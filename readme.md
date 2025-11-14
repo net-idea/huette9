@@ -1,4 +1,4 @@
-a# Hütte9 – Mountain cabin website
+# Hütte9 – Mountain cabin website
 
 A modern Symfony 7.2 web application for an Airbnb-style mountain cabin with a contact form and MariaDB integration.
 
