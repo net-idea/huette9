@@ -1,36 +1,60 @@
-FROM php:8.3-cli
+# Dockerfile
+FROM php:8.3-fpm-alpine
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies (including bash for Symfony CLI installer)
+RUN apk add --no-cache \
+    bash \
     git \
     curl \
     libpng-dev \
-    libonig-dev \
-    libxml2-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
     zip \
     unzip \
-    libzip-dev \
-    mariadb-client
+    oniguruma-dev \
+    libxml2-dev \
+    nodejs \
+    npm \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) pdo_mysql mbstring exif pcntl bcmath gd
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-
-# Get latest Composer
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Install Yarn
+RUN npm install -g yarn
+
+# Install Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash && \
+    mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
 # Set working directory
-WORKDIR /app
+WORKDIR /var/www/html
 
-# Copy existing application directory contents
-COPY . /app
+# Copy composer files
+COPY composer.json composer.lock ./
 
-# Install dependencies
-RUN composer install --no-interaction --optimize-autoloader
+# Install PHP dependencies
+RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist
 
-# Expose port 8000
-EXPOSE 8000
+# Copy package.json & yarn.lock
+COPY package.json yarn.lock webpack.config.js ./
 
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+# Install Node dependencies
+RUN yarn install --frozen-lockfile
+
+# Copy project
+COPY . .
+
+# Generate autoloader
+RUN composer dump-autoload --no-dev --optimize --classmap-authoritative
+
+# Create var directory if it doesn't exist and set permissions
+RUN mkdir -p /var/www/html/var/cache /var/www/html/var/log && \
+    chown -R www-data:www-data /var/www/html/var && \
+    chmod -R 775 /var/www/html/var
+
+# Expose port 9000 for PHP-FPM
+EXPOSE 9000
+
+CMD ["php-fpm"]
