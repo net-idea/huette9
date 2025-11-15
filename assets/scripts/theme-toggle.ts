@@ -20,6 +20,27 @@ type Theme = 'light' | 'dark' | 'system';
 
 // Theme toggler: reads from dropdown items with [data-theme]
 (function attachThemeToggle() {
+  function getCurrentTheme(): Theme {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return (stored === THEME_LIGHT || stored === THEME_DARK) ? stored : 'system';
+    } catch (e) {
+      return 'system';
+    }
+  }
+
+  function updateActiveState(): void {
+    const currentTheme = getCurrentTheme();
+    document.querySelectorAll('[data-theme]').forEach((btn) => {
+      const btnTheme = btn.getAttribute('data-theme');
+      if (btnTheme === currentTheme) {
+        btn.classList.add('is-active');
+      } else {
+        btn.classList.remove('is-active');
+      }
+    });
+  }
+
   function applyTheme(theme: Theme): void {
     if (theme === 'system') {
       localStorage.removeItem(STORAGE_KEY);
@@ -29,6 +50,7 @@ type Theme = 'light' | 'dark' | 'system';
       localStorage.setItem(STORAGE_KEY, theme);
       document.documentElement.setAttribute('data-bs-theme', theme);
     }
+    updateActiveState();
   }
 
   // Handle system preference changes if no explicit theme set
@@ -46,6 +68,12 @@ type Theme = 'light' | 'dark' | 'system';
     // Ignore errors
   }
 
+  // Initialize active state on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updateActiveState();
+  });
+
+  // Handle clicks on theme buttons
   document.addEventListener('click', (e: MouseEvent) => {
     if (!e.target) return;
     const btn = (e.target as HTMLElement).closest('[data-theme]');

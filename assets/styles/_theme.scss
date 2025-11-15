@@ -1,0 +1,1195 @@
+/* ============================================================================
+   Hütte9 Base Theme
+   Shared styles and CSS Custom Properties
+   ============================================================================ */
+
+// ============================================================================
+// CSS CUSTOM PROPERTIES - Base (can be overridden by theme files)
+// ============================================================================
+:root {
+  /* Brand colors - Static values (don't change per theme) */
+  --brand-primary: #{$brand-primary};
+  --brand-secondary: #{$brand-secondary};
+  --brand-accent: #{$brand-accent};
+  --brand-success: #{$brand-success};
+  --brand-danger: #{$brand-danger};
+  --brand-warning: #{$brand-warning};
+  --brand-info: #{$brand-info};
+  --brand-anthracite: #{$brand-anthracite};
+  --brand-wood-light: #{$brand-wood-light};
+  --brand-wood-dark: #{$brand-wood-dark};
+
+  /* Spacing */
+  --spacing-xs: #{$spacing-xs};
+  --spacing-sm: #{$spacing-sm};
+  --spacing-md: #{$spacing-md};
+  --spacing-lg: #{$spacing-lg};
+  --spacing-xl: #{$spacing-xl};
+
+  /* Border radius */
+  --radius: #{$border-radius};
+  --radius-sm: #{$border-radius-sm};
+  --radius-lg: #{$border-radius-lg};
+  --radius-pill: #{$border-radius-pill};
+  --radius-form: #{$border-radius-form};
+
+  /* Transitions */
+  --transition-base: #{$transition-base};
+  --transition-fast: #{$transition-fast};
+  --transition-slow: #{$transition-slow};
+
+  /* Transforms */
+  --transform-hover-card: #{$transform-hover-card};
+  --transform-hover-button: #{$transform-hover-button};
+  --transform-focus-input: #{$transform-focus-input};
+
+  /* Shadows - Base (will be overridden by theme) */
+  --shadow-sm: #{$box-shadow-sm};
+  --shadow-md: #{$box-shadow};
+  --shadow-lg: #{$box-shadow-lg};
+  --shadow-xl: #{$box-shadow-xl};
+
+  /* Glass morphism */
+  --glass-blur: #{$glass-blur};
+  --glass-blur-sm: #{$glass-blur-sm};
+
+  /* Gradients - Natural earth tones */
+  --gradient-primary: linear-gradient(135deg, #{$brand-primary} 0%, #{$brand-wood-dark} 100%);
+  --gradient-accent: linear-gradient(135deg, #{$brand-accent} 0%, #{$brand-primary} 100%);
+  --gradient-success: linear-gradient(135deg, #{$brand-success} 0%, #{$brand-secondary} 100%);
+  --gradient-nature: linear-gradient(135deg, #{$brand-secondary} 0%, #{$brand-success} 100%);
+
+  /* Theme-specific variables (defaults - will be overridden) */
+  --body-bg: #fafafa;
+  --body-color: #2a2a2a;
+  --glass-bg: rgb(255 255 255 / 75%);
+  --glass-border: rgb(200 122 58 / 15%);
+  --glass-shadow: 0 8px 32px 0 rgb(61 64 66 / 12%);
+  --glass-hover: rgb(255 255 255 / 95%);
+
+  /* Input variables (defaults) */
+  --input-bg: rgb(255 255 255 / 85%);
+  --input-border: rgb(61 64 66 / 25%);
+  --input-focus-bg: rgb(255 255 255 / 95%);
+  --input-focus-border: var(--brand-primary);
+  --input-shadow: 0 4px 15px rgb(61 64 66 / 10%);
+  --input-focus-shadow: 0 6px 20px rgb(200 122 58 / 30%);
+  --input-text-color: #2a2a2a;
+  --input-placeholder-color: rgb(61 64 66 / 50%);
+  --input-label-color: rgb(61 64 66 / 70%);
+  --input-label-bg: #fafafa;
+
+  /* Info box variables (defaults) */
+  --info-box-bg: rgb(255 255 255 / 80%);
+  --info-box-border: rgb(200 122 58 / 15%);
+  --info-box-color: var(--body-color);
+  --info-box-heading-color: var(--brand-primary);
+}
+
+// ============================================================================
+// SECTION SPACING
+// ============================================================================
+section,
+.section {
+  padding: 4rem 0;
+
+  @media (width <= 991.98px) {
+    padding: 3rem 0;
+  }
+
+  @media (width <= 767.98px) {
+    padding: 2.5rem 0;
+  }
+}
+
+.container,
+.container-fluid {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  @media (width <= 767.98px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+// Content spacing
+.content-section {
+  margin-bottom: 3rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Row spacing
+.row {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Paragraph spacing
+p {
+  margin-bottom: 1.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Text containers
+.lead {
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+// Display headings spacing
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  margin-bottom: 2rem;
+}
+
+// ============================================================================
+// BASE TYPOGRAPHY
+// ============================================================================
+body {
+  font-family: $font-family-sans-serif;
+  font-weight: $body-font-weight;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--body-bg);
+  color: var(--body-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: $headings-font-weight;
+  letter-spacing: $headings-letter-spacing;
+  margin-bottom: 1.5rem;
+}
+
+// ============================================================================
+// NAVBAR
+// ============================================================================
+.navbar-glass {
+  background: var(--navbar-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid var(--navbar-border);
+  transition: var(--transition-base);
+  box-shadow: var(--navbar-shadow);
+}
+
+.navbar-brand {
+  font-weight: $headings-font-weight;
+  font-size: 1.5rem;
+  transition: transform $transition-fast;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.brand-icon {
+  font-size: 1.8rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: var(--transition-base);
+  position: relative;
+  padding: 0.5rem 1rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--brand-primary);
+    transition: var(--transition-base);
+    transform: translateX(-50%);
+  }
+
+  &:hover,
+  &.active {
+    color: var(--brand-primary);
+
+    &::after {
+      width: 80%;
+    }
+  }
+}
+
+// ============================================================================
+// NAVBAR SWITCHERS (Language & Theme)
+// ============================================================================
+.navbar-lang-switcher,
+.navbar-theme-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.btn-lang-toggle,
+.btn-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
+  color: inherit;
+  transition: var(--transition-base);
+
+  &:hover {
+    background: var(--toggle-bg-hover);
+    transform: var(--transform-hover-button);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.btn-lang-toggle {
+  .lang-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .lang-code {
+    font-size: 0.75rem;
+  }
+}
+
+.btn-theme-toggle {
+  .theme-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .theme-label {
+    font-size: 0.75rem;
+  }
+}
+
+.navbar-lang-menu,
+.navbar-theme-menu {
+  min-width: 210px;
+  padding: 0.4rem;
+  border-radius: var(--radius);
+  background: var(--dropdown-bg);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-lg);
+}
+
+.navbar-lang-item,
+.navbar-theme-item {
+  border-radius: var(--radius);
+  padding: 0.55rem 0.75rem;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+
+  & + & {
+    margin-top: 0.2rem;
+  }
+
+  &:hover {
+    background: var(--dropdown-item-hover);
+  }
+
+  &.is-active {
+    background: var(--dropdown-item-active);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0.7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-pill);
+      background: var(--brand-primary);
+    }
+  }
+}
+
+.navbar-lang-flag,
+.navbar-theme-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.navbar-lang-text,
+.navbar-theme-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  flex: 1;
+}
+
+.navbar-lang-name,
+.navbar-theme-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.navbar-lang-label,
+.navbar-theme-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+  line-height: 1;
+}
+
+// ============================================================================
+// BUTTONS
+// ============================================================================
+.btn {
+  transition: var(--transition-base);
+  font-weight: $btn-font-weight;
+  letter-spacing: 0.3px;
+  border-radius: var(--radius) !important;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--brand-primary);
+  --bs-btn-border-color: var(--brand-primary);
+  --bs-btn-hover-bg: var(--brand-wood-dark);
+  --bs-btn-hover-border-color: var(--brand-wood-dark);
+
+  background: var(--gradient-primary);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgb(200 122 58 / 35%);
+
+  &:hover {
+    transform: var(--transform-hover-button);
+    box-shadow: 0 6px 20px rgb(200 122 58 / 45%);
+    filter: brightness(1.1);
+    color: white;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-outline-light {
+  border: 2px solid rgb(255 255 255 / 70%);
+  background: transparent;
+  color: white;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 25%);
+
+  &:hover {
+    background: rgb(255 255 255 / 15%);
+    border-color: white;
+    transform: var(--transform-hover-button);
+    box-shadow: 0 6px 20px rgb(255 255 255 / 35%);
+    color: white;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--brand-primary);
+  background: transparent;
+  color: var(--brand-primary);
+  box-shadow: 0 4px 15px rgb(200 122 58 / 15%);
+
+  &:hover {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: white;
+    transform: var(--transform-hover-button);
+    box-shadow: 0 6px 20px rgb(200 122 58 / 35%);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-lg {
+  padding: 0.875rem 2rem;
+  font-size: 1.125rem;
+}
+
+// ============================================================================
+// HERO & CTA SECTIONS
+// ============================================================================
+.hero-section,
+.contact-hero,
+.cta-section {
+  background: var(--brand-primary);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgb(255 255 255 / 10%) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+// ============================================================================
+// FEATURE CARDS
+// ============================================================================
+.feature-card {
+  transition: var(--transition-base);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--shadow-xl);
+
+    .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+}
+
+.feature-icon {
+  font-size: 3rem;
+  line-height: 1;
+  display: inline-block;
+  transition: transform $transition-base;
+}
+
+// ============================================================================
+// CONTACT ICONS
+// ============================================================================
+.contact-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-nature);
+  border-radius: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgb(74 95 78 / 40%);
+  transition: var(--transition-base);
+
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 25px rgb(74 95 78 / 60%);
+  }
+}
+
+// ============================================================================
+// ALERTS
+// ============================================================================
+.alert {
+  border-radius: var(--radius);
+  border: none;
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-md);
+  animation: slide-in-down 0.4s ease;
+}
+
+@keyframes slide-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: rgb(16 185 129 / 10%);
+  border-left: 4px solid var(--brand-success);
+  color: var(--brand-success);
+}
+
+.alert-danger {
+  background: rgb(239 68 68 / 10%);
+  border-left: 4px solid var(--brand-danger);
+  color: var(--brand-danger);
+}
+
+// ============================================================================
+// LEGAL PAGES
+// ============================================================================
+.legal-content {
+  h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.75rem;
+    border-bottom: 3px solid rgb(200 122 58 / 20%);
+    padding-bottom: 0.75rem;
+    color: var(--body-color);
+    font-weight: 700;
+  }
+
+  h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: var(--brand-primary);
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    color: var(--body-color);
+    font-size: 1rem;
+  }
+
+  ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    li {
+      margin-bottom: 0.75rem;
+      line-height: 1.8;
+      position: relative;
+      padding-left: 0.5rem;
+
+      &::marker {
+        color: var(--brand-primary);
+      }
+    }
+  }
+
+  a {
+    color: var(--brand-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-base);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--brand-primary);
+      transition: width $transition-base;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-form);
+    overflow: hidden;
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid rgb(0 0 0 / 5%);
+      background: rgb(255 255 255 / 50%);
+
+      &:first-child {
+        font-weight: 700;
+        width: 40%;
+        color: var(--brand-primary);
+      }
+    }
+  }
+}
+
+// ============================================================================
+// BOOKING SECTION TITLES
+// ============================================================================
+.booking-section-title {
+  color: var(--brand-primary);
+  font-weight: 700;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgb(200 122 58 / 20%);
+  display: flex;
+  align-items: center;
+
+  i {
+    color: var(--brand-accent);
+  }
+}
+
+// ============================================================================
+// BACKGROUND PATTERNS
+// ============================================================================
+.bg-pattern {
+  background-image:
+    radial-gradient(circle at 20% 50%, rgb(200 122 58 / 4%) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgb(74 95 78 / 4%) 0%, transparent 50%);
+}
+
+// ============================================================================
+// RESPONSIVE DESIGN
+// ============================================================================
+@media (width <= 991.98px) {
+  .navbar-nav {
+    align-items: flex-start !important;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0;
+    text-align: left;
+  }
+
+  .navbar-lang-switcher,
+  .navbar-theme-switcher {
+    margin-left: 0 !important;
+    display: inline-flex;
+    width: auto;
+  }
+
+  .navbar-nav > .navbar-lang-switcher {
+    margin-right: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .navbar-nav > .navbar-theme-switcher {
+    margin-top: 0.75rem;
+  }
+
+  .btn-lang-toggle,
+  .btn-theme-toggle {
+    justify-content: flex-start;
+  }
+
+  .navbar-lang-menu,
+  .navbar-theme-menu {
+    min-width: 200px;
+    max-width: 320px;
+  }
+
+  .hero-section,
+  .contact-hero {
+    padding: 3rem 0;
+  }
+
+  .py-6 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (width <= 767.98px) {
+  .glass-card {
+    border-radius: 1rem;
+    padding: 1.5rem !important;
+  }
+}
+
+// ============================================================================
+// GLASS SURFACES (Base)
+// ============================================================================
+.glass-card,
+.feature-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-form);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--glass-shadow);
+  color: var(--body-color);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-base);
+  padding: 1.25rem;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 50%), transparent);
+}
+
+.glass-card:hover,
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-hover, var(--shadow-xl));
+  border-color: rgb(255 255 255 / 25%);
+}
+
+
+/* ============================================
+   FORM STYLES - Modern Glass 3D Design
+   ============================================ */
+
+/* Form Groups */
+.booking-form .form-group,
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Form Labels */
+.booking-form .form-label,
+.contact-form .form-label,
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: block;
+  color: var(--bs-body-color);
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+/* Form Controls - Glass 3D Effect */
+.booking-form .form-control,
+.contact-form .form-control,
+.form-control {
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--input-border);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--input-shadow);
+  position: relative;
+  color: var(--bs-body-color);
+}
+
+.booking-form .form-control::placeholder,
+.contact-form .form-control::placeholder,
+.form-control::placeholder {
+  color: rgb(108 117 125 / 60%);
+  font-weight: 400;
+}
+
+/* Focus State - Enhanced Glow */
+.booking-form .form-control:focus,
+.contact-form .form-control:focus,
+.form-control:focus {
+  background: var(--input-focus-bg);
+  border-color: var(--input-focus-border);
+  box-shadow:
+    var(--input-focus-shadow),
+    0 0 0 0.25rem rgb(13 110 253 / 15%);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Hover State */
+.booking-form .form-control:hover:not(:focus),
+.contact-form .form-control:hover:not(:focus),
+.form-control:hover:not(:focus) {
+  border-color: rgb(13 110 253 / 30%);
+  box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
+  transform: none;
+}
+
+/* Textarea Specific */
+.booking-form textarea.form-control,
+.contact-form textarea.form-control,
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Invalid State with Animation */
+.booking-form .form-control:invalid:not(:placeholder-shown),
+.contact-form .form-control:invalid:not(:placeholder-shown),
+.form-control.is-invalid {
+  border-color: var(--brand-danger);
+  background: rgb(239 68 68 / 5%);
+  animation: fade-in-down 0.3s ease; /* renamed */
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Check (Checkboxes & Radio) */
+.booking-form .form-check,
+.contact-form .form-check {
+  display: flex;            /* align with inputs */
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: 0;
+  min-height: auto;
+  margin-bottom: 1rem;
+}
+
+.booking-form .form-check-input,
+.contact-form .form-check-input,
+.form-check-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0;          /* use gap instead */
+  border: 2px solid var(--input-border);
+  border-radius: 0.19rem;   /* sharp radius */
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.booking-form .form-check-input:hover,
+.contact-form .form-check-input:hover,
+.form-check-input:hover {
+  border-color: var(--brand-primary);
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgb(13 110 253 / 20%);
+}
+
+.booking-form .form-check-input:checked,
+.contact-form .form-check-input:checked,
+.form-check-input:checked {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  box-shadow: 0 4px 15px rgb(13 110 253 / 40%);
+}
+
+.booking-form .form-check-label,
+.contact-form .form-check-label,
+.form-check-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+  margin-bottom: 0; /* prevent baseline offset */
+}
+
+/* Form Sections with Icons */
+.booking-form h5,
+.contact-form h5 {
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgb(13 110 253 / 10%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.booking-form h5 i,
+.contact-form h5 i {
+  font-size: 1.25rem;
+}
+
+/* Alert Styles */
+.booking-form .alert,
+.contact-form .alert {
+  border-radius: 0.19rem; /* sharp radius */
+  border: none;
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  animation: slide-in-down 0.4s ease; /* renamed */
+}
+
+@keyframes slide-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: rgb(16 185 129 / 10%);
+  border-left: 4px solid var(--brand-success);
+  color: var(--brand-success);
+}
+
+.alert-danger {
+  background: rgb(239 68 68 / 10%);
+  border-left: 4px solid var(--brand-danger);
+  color: var(--brand-danger);
+}
+
+/* Info Box at Bottom */
+.booking-form .bg-light,
+.contact-form .bg-light {
+  background: rgb(13 110 253 / 5%) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(13 110 253 / 10%);
+  border-radius: 0.19rem; /* sharp radius */
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.booking-form .bg-light h6,
+.contact-form .bg-light h6 {
+  color: var(--brand-primary);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.booking-form .bg-light ul,
+.contact-form .bg-light ul {
+  margin-bottom: 0;
+  padding-left: 1.25rem;
+}
+
+.booking-form .bg-light li,
+.contact-form .bg-light li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Submit Button Enhancement */
+.booking-form .btn-primary,
+.contact-form .btn-primary {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 0.19rem; /* sharp radius */
+  background: var(--gradient-primary);
+  border: none;
+  box-shadow: 0 6px 25px rgb(102 126 234 / 40%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-form .btn-primary::before,
+.contact-form .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 30%), transparent);
+  transition: left 0.5s ease;
+}
+
+.booking-form .btn-primary:hover,
+.contact-form .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgb(102 126 234 / 50%);
+}
+
+.booking-form .btn-primary:hover::before,
+.contact-form .btn-primary:hover::before {
+  left: 100%;
+}
+
+.booking-form .btn-primary:active,
+.contact-form .btn-primary:active {
+  transform: translateY(-1px);
+}
+
+/* Required Field Indicator */
+
+/* Small Helper Text */
+.form-text {
+  font-size: 0.875rem;
+  color: rgb(108 117 125 / 80%);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* ============================================
+   LEGAL PAGES STYLES
+   ============================================ */
+
+.legal-content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.75rem;
+  border-bottom: 3px solid rgb(200 122 58 / 20%);
+  padding-bottom: 0.75rem;
+  color: var(--bs-body-color);
+  font-weight: 700;
+}
+
+.legal-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.legal-content p {
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  color: var(--bs-body-color);
+  font-size: 1rem;
+}
+
+.legal-content ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-content ul li {
+  margin-bottom: 0.75rem;
+  line-height: 1.8;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.legal-content ul li::marker {
+  color: var(--brand-primary);
+}
+
+.legal-content a {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.legal-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  transition: width 0.3s ease;
+}
+
+.legal-content a:hover::after {
+  width: 100%;
+}
+
+.legal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.legal-content table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgb(0 0 0 / 5%);
+  background: rgb(255 255 255 / 50%);
+}
+
+.legal-content table td:first-child {
+  font-weight: 700;
+  width: 40%;
+  color: var(--brand-primary);
+}
+
+/* ============================================
+   BOOKING FORM SECTION TITLES
+   ============================================ */
+
+.booking-section-title {
+  color: var(--brand-primary);
+  font-weight: 700;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgb(200 122 58 / 20%);
+  display: flex;
+  align-items: center;
+}
+
+.booking-section-title i {
+  color: var(--brand-accent);
+}
+
+/* Background Pattern */
+.bg-pattern {
+  background-image:
+    radial-gradient(circle at 20% 50%, rgb(200 122 58 / 4%) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgb(74 95 78 / 4%) 0%, transparent 50%);
+}
+
+/* Responsive Design */
+@media (width <= 991.98px) {
+  .hero-section,
+  .contact-hero {
+    padding: 3rem 0;
+  }
+
+  .py-6 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .booking-form .btn-primary,
+  .contact-form .btn-primary {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+@media (width <= 767.98px) {
+  .glass-card {
+    border-radius: 1rem;
+    padding: 1.5rem !important;
+  }
+
+  .booking-form .form-control,
+  .contact-form .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}

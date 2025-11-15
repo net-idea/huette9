@@ -3,24 +3,24 @@
    ============================================ */
 
 :root[data-bs-theme='dark'] {
-  --input-bg: rgb(255 255 255 / 8%);
-  --input-border: rgb(255 255 255 / 20%);
-  --input-focus-bg: rgb(255 255 255 / 12%);
-  --input-focus-border: #0d6efd;
-  --input-shadow: 0 4px 15px rgb(0 0 0 / 30%);
-  --input-focus-shadow: 0 6px 20px rgb(13 110 253 / 40%);
-  --input-label-color: rgb(255 255 255 / 65%);
-  --input-label-bg: #1a1f3a;
+  --input-bg: rgb(61 64 66 / 50%);
+  --input-border: rgb(200 122 58 / 30%);
+  --input-focus-bg: rgb(61 64 66 / 60%);
+  --input-focus-border: #c87a3a;
+  --input-shadow: 0 4px 15px rgb(0 0 0 / 40%);
+  --input-focus-shadow: 0 6px 20px rgb(200 122 58 / 50%);
+  --input-label-color: rgb(229 201 168 / 75%);
+  --input-label-bg: #2a2a2a;
 }
 
-/* Page Gradient Background for Greater Plasticity */
+/* Page Gradient Background - Anthracite with warm accents */
 :root[data-bs-theme='dark'] body {
   background: linear-gradient(135deg,
-    #0a0e27 0%,
-    #1a1f3a 25%,
-    #2a2f4a 50%,
-    #1a1f3a 75%,
-    #0a0e27 100%);
+    #2a2a2a 0%,
+    #3d4042 25%,
+    #4a4a4a 50%,
+    #3d4042 75%,
+    #2a2a2a 100%);
   background-attachment: fixed;
   background-size: 400% 400%;
   animation: gradient-shift-dark 15s ease infinite;
@@ -34,20 +34,20 @@
 
 /* Form Labels */
 :root[data-bs-theme='dark'] .form-label {
-  color: rgb(255 255 255 / 65%);
+  color: rgb(229 201 168 / 75%);
 }
 
 :root[data-bs-theme='dark'] .form-control:focus ~ .form-label,
 :root[data-bs-theme='dark'] .form-control:not(:placeholder-shown) ~ .form-label {
-  color: #93c5fd;
-  background: #1a1f3a;
+  color: #e5c9a8;
+  background: #2a2a2a;
 }
 
 /* Form Controls */
 :root[data-bs-theme='dark'] .form-control {
   color: rgb(255 255 255 / 95%);
-  background: rgb(255 255 255 / 8%);
-  border-color: rgb(255 255 255 / 20%);
+  background: rgb(61 64 66 / 50%);
+  border-color: rgb(200 122 58 / 30%);
 }
 
 :root[data-bs-theme='dark'] .form-control:focus {

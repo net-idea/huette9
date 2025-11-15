@@ -4,23 +4,23 @@
 
 :root[data-bs-theme='light'] {
   --input-bg: rgb(255 255 255 / 90%);
-  --input-border: rgb(0 0 0 / 15%);
+  --input-border: rgb(61 64 66 / 25%);
   --input-focus-bg: rgb(255 255 255 / 100%);
-  --input-focus-border: #0d6efd;
-  --input-shadow: 0 4px 15px rgb(0 0 0 / 8%);
-  --input-focus-shadow: 0 6px 20px rgb(13 110 253 / 25%);
-  --input-label-color: #6c757d;
+  --input-focus-border: #c87a3a;
+  --input-shadow: 0 4px 15px rgb(61 64 66 / 10%);
+  --input-focus-shadow: 0 6px 20px rgb(200 122 58 / 30%);
+  --input-label-color: #3d4042;
   --input-label-bg: #fff;
 }
 
-/* Page Gradient Background for Greater Plasticity */
+/* Page Gradient Background - Warm natural tones */
 :root[data-bs-theme='light'] body {
   background: linear-gradient(135deg,
-    #f8f9fa 0%,
-    #e9ecef 25%,
-    #dee2e6 50%,
-    #e9ecef 75%,
-    #f8f9fa 100%);
+    #faf8f5 0%,
+    #f5f1ec 25%,
+    #ebe5dd 50%,
+    #f5f1ec 75%,
+    #faf8f5 100%);
   background-attachment: fixed;
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
@@ -34,20 +34,20 @@
 
 /* Form Labels */
 :root[data-bs-theme='light'] .form-label {
-  color: #6c757d;
+  color: #3d4042;
 }
 
 :root[data-bs-theme='light'] .form-control:focus ~ .form-label,
 :root[data-bs-theme='light'] .form-control:not(:placeholder-shown) ~ .form-label {
-  color: #0d6efd;
+  color: #c87a3a;
   background: #fff;
 }
 
 /* Form Controls */
 :root[data-bs-theme='light'] .form-control {
-  color: #212529;
+  color: #2a2a2a;
   background: rgb(255 255 255 / 90%);
-  border-color: rgb(0 0 0 / 15%);
+  border-color: rgb(61 64 66 / 25%);
 }
 
 :root[data-bs-theme='light'] .form-control:focus {

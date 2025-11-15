@@ -94,10 +94,10 @@ class FormContactType extends AbstractType
                 ],
             ])
             ->add('emailrep', TextType::class, [
-                'mapped'   => true,
-                'required' => false,
+                'mapped'     => true,
+                'required'   => false,
                 'empty_data' => '',
-                'attr'     => [
+                'attr'       => [
                     'autocomplete' => 'off',
                     'tabindex'     => '-1',
                     'style'        => 'position:absolute;left:-9999px;',

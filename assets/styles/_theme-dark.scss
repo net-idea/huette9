@@ -1,0 +1,290 @@
+/* ============================================================================
+   Hütte9 Dark Theme
+   Anthracite with warm wood accents
+   ============================================================================ */
+
+:root[data-bs-theme='dark'] {
+  /* ======================================
+     BOOTSTRAP COLOR OVERRIDES
+     ====================================== */
+  --bs-primary: #{$brand-wood-light};
+  --bs-primary-rgb: 229, 201, 168;
+  --bs-secondary: #{$brand-success};
+  --bs-secondary-rgb: 107, 142, 90;
+  --bs-body-color: rgb(255 255 255 / 92%);
+  --bs-body-bg: #2a2a2a;
+
+  /* ======================================
+     THEME COLORS
+     ====================================== */
+  --body-bg: linear-gradient(to bottom, #2a2a2a 0%, #{$brand-anthracite} 100%);
+  --body-color: rgb(255 255 255 / 92%);
+
+  /* ======================================
+     GLASS MORPHISM
+     ====================================== */
+  --glass-bg: rgb(255 255 255 / 5%);
+  --glass-border: rgb(255 255 255 / 10%);
+  --glass-shadow: 0 8px 32px 0 rgb(0 0 0 / 50%);
+  --glass-hover: rgb(255 255 255 / 8%);
+  --glass-shadow-hover: 0 10px 35px 0 rgb(0 0 0 / 60%);
+
+  /* ======================================
+     NAVBAR
+     ====================================== */
+  --navbar-bg: rgb(42 42 42 / 95%);
+  --navbar-border: rgb(200 122 58 / 25%);
+  --navbar-shadow: 0 2px 10px rgb(0 0 0 / 40%);
+
+  /* ======================================
+     TOGGLES (Language & Theme Switchers)
+     ====================================== */
+  --toggle-bg: rgb(255 255 255 / 10%);
+  --toggle-bg-hover: rgb(255 255 255 / 20%);
+  --toggle-border: rgb(255 255 255 / 20%);
+
+  /* ======================================
+     DROPDOWNS
+     ====================================== */
+  --dropdown-bg: rgb(42 42 42 / 96%);
+  --dropdown-item-hover: rgb(200 122 58 / 15%);
+  --dropdown-item-active: rgb(200 122 58 / 25%);
+
+  /* ======================================
+     FORMS
+     ====================================== */
+  --input-bg: rgb(61 64 66 / 50%);
+  --input-border: rgb(200 122 58 / 30%);
+  --input-focus-bg: rgb(61 64 66 / 60%);
+  --input-focus-border: var(--brand-primary);
+  --input-shadow: 0 4px 15px rgb(0 0 0 / 40%);
+  --input-focus-shadow: 0 6px 20px rgb(200 122 58 / 50%);
+  --input-text-color: rgb(255 255 255 / 95%);
+  --input-placeholder-color: rgb(229 201 168 / 40%);
+  --input-label-color: rgb(255 255 255 / 90%);
+  --input-label-bg: #2a2a2a;
+
+  /* ======================================
+     SHADOWS
+     ====================================== */
+  --shadow-sm: 0 2px 4px rgb(0 0 0 / 30%);
+  --shadow-md: 0 4px 15px rgb(0 0 0 / 40%);
+  --shadow-lg: 0 8px 30px rgb(0 0 0 / 50%);
+  --shadow-xl: 0 12px 40px rgb(0 0 0 / 60%);
+}
+
+/* ======================================
+   BODY BACKGROUND
+   ====================================== */
+:root[data-bs-theme='dark'] body {
+  background: var(--body-bg);
+  color: var(--body-color);
+}
+
+/* ======================================
+   COMPONENT OVERRIDES
+   ====================================== */
+:root[data-bs-theme='dark'] {
+  .glass-card:hover {
+    background: var(--glass-hover);
+  }
+
+  .form-check-input:hover {
+    border-color: var(--brand-primary);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgb(200 122 58 / 40%);
+  }
+
+  .form-check-input:checked {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+  }
+
+  .form-check-label {
+    color: rgb(255 255 255 / 85%);
+  }
+
+  /* ======================================
+     FORMS - Invalid State
+     ====================================== */
+  .form-control.is-invalid,
+  .form-control:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+    background: rgb(239 68 68 / 10%);
+  }
+
+  .invalid-feedback {
+    color: #fca5a5;
+  }
+
+  /* ======================================
+     ALERTS
+     ====================================== */
+  .alert-success {
+    background: rgb(16 185 129 / 15%);
+    border-left: 4px solid #10b981;
+    color: #86efac;
+  }
+
+  .alert-danger {
+    background: rgb(239 68 68 / 15%);
+    border-left: 4px solid #ef4444;
+    color: #fca5a5;
+  }
+
+  /* ======================================
+     INFO BOXES
+     ====================================== */
+  .booking-form .bg-light,
+  .contact-form .bg-light {
+    background: rgb(13 110 253 / 10%) !important;
+    border: 1px solid rgb(13 110 253 / 20%);
+    color: rgb(255 255 255 / 85%);
+
+    h6 {
+      color: #93c5fd;
+    }
+  }
+
+  /* ======================================
+     CONTACT
+     ====================================== */
+  .contact-icon {
+    box-shadow: 0 4px 15px rgb(102 126 234 / 40%);
+  }
+
+  /* ======================================
+     FEATURE CARDS
+     ====================================== */
+  .feature-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  /* ======================================
+     TYPOGRAPHY
+     ====================================== */
+  .text-primary {
+    color: var(--brand-wood-light) !important;
+  }
+
+  .text-muted {
+    color: rgb(229 201 168 / 65%) !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(255 255 255 / 95%);
+  }
+
+  .form-text {
+    color: rgb(229 201 168 / 55%);
+  }
+
+  /* ======================================
+     FORM SECTION HEADERS
+     ====================================== */
+  .booking-form h5,
+  .contact-form h5 {
+    color: var(--brand-wood-light);
+    border-bottom: 2px solid rgb(200 122 58 / 25%);
+  }
+
+  .booking-section-title {
+    color: var(--brand-wood-light);
+    border-bottom-color: rgb(200 122 58 / 30%);
+
+    i {
+      color: var(--brand-accent);
+    }
+  }
+
+  /* ======================================
+     CONTACT INFO
+     ====================================== */
+  .contact-info-item {
+    h5 {
+      color: rgb(255 255 255 / 92%);
+    }
+
+    .text-muted {
+      color: rgb(229 201 168 / 65%) !important;
+    }
+
+    a {
+      color: var(--brand-wood-light);
+
+      &:hover {
+        color: var(--brand-primary);
+      }
+    }
+  }
+
+  /* ======================================
+     FOOTER
+     ====================================== */
+  footer {
+    background: rgb(42 42 42 / 50%) !important;
+    border-top: 1px solid rgb(200 122 58 / 20%) !important;
+
+    .text-muted {
+      color: rgb(229 201 168 / 60%) !important;
+    }
+
+    a {
+      color: rgb(229 201 168 / 75%) !important;
+
+      &:hover {
+        color: var(--brand-primary) !important;
+      }
+    }
+
+    h6 {
+      color: rgb(255 255 255 / 95%);
+    }
+
+    hr {
+      border-color: rgb(255 255 255 / 10%) !important;
+      opacity: 1;
+    }
+  }
+
+  /* ======================================
+     BACKGROUND PATTERNS
+     ====================================== */
+  .bg-pattern {
+    background-color: #2a2a2a;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgb(200 122 58 / 8%) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgb(74 95 78 / 8%) 0%, transparent 50%);
+  }
+
+  .placeholder-image {
+    background: var(--gradient-nature);
+  }
+
+  .hero-overlay,
+  .cta-overlay {
+    background: radial-gradient(circle at 30% 50%, rgb(200 122 58 / 15%) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgb(74 95 78 / 12%) 0%, transparent 50%);
+  }
+
+  .navbar-glass {
+    background: rgb(42 42 42 / 95%);
+    border-bottom: 1px solid rgb(200 122 58 / 30%);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 55%);
+  }
+
+  .booking-important-box {
+    background: rgb(61 64 66 / 55%);
+    border: 1px solid rgb(200 122 58 / 35%);
+    color: rgb(255 255 255 / 85%);
+  }
+
+  .booking-important-box h6 {
+    color: var(--brand-wood-light);
+    font-weight: 600;
+  }
+
+  .booking-important-box ul li::marker {
+    color: var(--brand-primary);
+  }
+}

@@ -1,0 +1,227 @@
+/* ============================================================================
+   Hütte9 Light Theme
+   White walls with warm wood accents
+   ============================================================================ */
+
+:root[data-bs-theme='light'] {
+  /* ======================================
+     BOOTSTRAP COLOR OVERRIDES
+     ====================================== */
+  --bs-primary: #{$brand-primary};
+  --bs-primary-rgb: 200, 122, 58;
+  --bs-secondary: #{$brand-secondary};
+  --bs-secondary-rgb: 74, 95, 78;
+  --bs-body-color: #2a2a2a;
+  --bs-body-bg: #fafafa;
+
+  /* ======================================
+     THEME COLORS
+     ====================================== */
+  --body-bg: linear-gradient(to bottom, #faf8f5 0%, #fff 100%);
+  --body-color: #2a2a2a;
+
+  /* ======================================
+     GLASS MORPHISM
+     ====================================== */
+  --glass-bg: rgb(255 255 255 / 80%);
+  --glass-border: rgb(200 122 58 / 15%);
+  --glass-shadow: 0 8px 32px 0 rgb(61 64 66 / 12%);
+  --glass-hover: rgb(255 255 255 / 95%);
+  --glass-shadow-hover: 0 10px 35px 0 rgb(31 38 135 / 15%);
+
+  /* ======================================
+     NAVBAR
+     ====================================== */
+  --navbar-bg: rgb(255 255 255 / 96%);
+  --navbar-border: rgb(200 122 58 / 12%);
+  --navbar-shadow: 0 2px 10px rgb(61 64 66 / 8%);
+
+  /* ======================================
+     TOGGLES (Language & Theme Switchers)
+     ====================================== */
+  --toggle-bg: rgb(255 255 255 / 40%);
+  --toggle-bg-hover: rgb(255 255 255 / 65%);
+  --toggle-border: rgb(0 0 0 / 10%);
+
+  /* ======================================
+     DROPDOWNS
+     ====================================== */
+  --dropdown-bg: rgb(255 255 255 / 96%);
+  --dropdown-item-hover: rgb(200 122 58 / 8%);
+  --dropdown-item-active: rgb(200 122 58 / 12%);
+
+  /* ======================================
+     FORMS
+     ====================================== */
+  --input-bg: rgb(255 255 255 / 85%);
+  --input-border: rgb(61 64 66 / 25%);
+  --input-focus-bg: rgb(255 255 255 / 95%);
+  --input-focus-border: var(--brand-primary);
+  --input-shadow: 0 4px 15px rgb(61 64 66 / 10%);
+  --input-focus-shadow: 0 6px 20px rgb(200 122 58 / 30%);
+  --input-text-color: #2a2a2a;
+  --input-placeholder-color: rgb(61 64 66 / 50%);
+  --input-label-color: rgb(61 64 66 / 70%);
+  --input-label-bg: #fafafa;
+
+  /* ======================================
+     SHADOWS
+     ====================================== */
+  --shadow-sm: 0 2px 4px rgb(61 64 66 / 8%);
+  --shadow-md: 0 4px 15px rgb(61 64 66 / 12%);
+  --shadow-lg: 0 8px 30px rgb(61 64 66 / 18%);
+  --shadow-xl: 0 12px 40px rgb(61 64 66 / 22%);
+}
+
+/* ======================================
+   BODY BACKGROUND
+   ====================================== */
+:root[data-bs-theme='light'] body {
+  background: var(--body-bg);
+  color: var(--body-color);
+}
+
+/* ======================================
+   COMPONENT OVERRIDES
+   ====================================== */
+:root[data-bs-theme='light'] {
+  .glass-card:hover {
+    background: var(--glass-hover);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .navbar-glass {
+    background: rgb(255 255 255 / 96%);
+    border-bottom: 1px solid rgb(200 122 58 / 12%);
+    box-shadow: 0 2px 10px rgb(61 64 66 / 8%);
+  }
+
+  .booking-important-box {
+    background: rgb(255 255 255 / 80%);
+    border: 1px solid rgb(200 122 58 / 15%);
+    color: #2a2a2a;
+  }
+
+  .booking-important-box h6 {
+    color: var(--brand-primary);
+    font-weight: 600;
+  }
+}
+:root[data-bs-theme='light'] .form-control-glass {
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+}
+
+:root[data-bs-theme='light'] .form-control-glass:focus {
+  background: var(--input-focus-bg);
+  border-color: var(--input-focus-border);
+}
+
+:root[data-bs-theme='light'] .bg-pattern {
+  background-color: #faf8f5;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgb(200 122 58 / 4%) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgb(74 95 78 / 4%) 0%, transparent 50%);
+}
+
+/* Footer - Light Theme */
+:root[data-bs-theme='light'] footer {
+  background: rgb(250 248 245 / 95%) !important;
+  border-top: 1px solid rgb(200 122 58 / 15%) !important;
+}
+
+:root[data-bs-theme='light'] footer .text-muted {
+  color: var(--brand-anthracite) !important;
+  opacity: 0.7;
+}
+
+:root[data-bs-theme='light'] footer a {
+  color: var(--brand-anthracite) !important;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+:root[data-bs-theme='light'] footer a:hover {
+  color: var(--brand-primary) !important;
+  opacity: 1;
+}
+
+:root[data-bs-theme='light'] footer hr {
+  border-color: rgb(200 122 58 / 15%) !important;
+}
+
+/* ============================================
+   NAVBAR SWITCHERS - Light Theme
+   ============================================ */
+
+/* Toggle buttons (both language and theme) */
+:root[data-bs-theme='light'] .btn-lang-toggle,
+:root[data-bs-theme='light'] .btn-theme-toggle {
+  background: rgb(229 201 168 / 15%);
+  border: 1px solid rgb(200 122 58 / 25%);
+  color: var(--brand-anthracite);
+  box-shadow: 0 3px 10px rgb(61 64 66 / 15%);
+}
+
+:root[data-bs-theme='light'] .btn-lang-toggle:hover,
+:root[data-bs-theme='light'] .btn-theme-toggle:hover {
+  background: rgb(229 201 168 / 25%);
+  border-color: var(--brand-primary);
+  box-shadow: 0 6px 18px rgb(200 122 58 / 25%);
+}
+
+/* Dropdown menus (both language and theme) */
+:root[data-bs-theme='light'] .navbar-lang-menu,
+:root[data-bs-theme='light'] .navbar-theme-menu {
+  background: rgb(255 255 255 / 98%);
+  border: 1px solid rgb(200 122 58 / 12%);
+  box-shadow: 0 8px 30px rgb(61 64 66 / 15%);
+}
+
+/* Dropdown items hover state */
+:root[data-bs-theme='light'] .navbar-lang-item:hover,
+:root[data-bs-theme='light'] .navbar-theme-item:hover {
+  background: rgb(229 201 168 / 20%);
+}
+
+/* Active state for language and theme items */
+:root[data-bs-theme='light'] .navbar-lang-item.is-active,
+:root[data-bs-theme='light'] .navbar-theme-item.is-active {
+  background: rgb(200 122 58 / 15%);
+}
+
+/* Item text colors (primary labels) */
+:root[data-bs-theme='light'] .navbar-lang-name,
+:root[data-bs-theme='light'] .navbar-theme-name {
+  color: var(--brand-anthracite);
+}
+
+/* Item text colors (secondary labels) */
+:root[data-bs-theme='light'] .navbar-lang-label,
+:root[data-bs-theme='light'] .navbar-theme-label {
+  color: rgb(61 64 66 / 70%);
+}
+
+/* Active indicator for language and theme items */
+:root[data-bs-theme='light'] .navbar-lang-item.is-active::after,
+:root[data-bs-theme='light'] .navbar-theme-item.is-active::after {
+  background: var(--brand-primary);
+}
+
+/* Bootstrap Utility Overrides - Light Theme */
+:root[data-bs-theme='light'] .text-primary {
+  color: var(--brand-primary) !important;
+}
+
+/* Booking Section Titles - Light Theme */
+:root[data-bs-theme='light'] .booking-section-title {
+  color: var(--brand-primary);
+  border-bottom-color: rgb(200 122 58 / 25%);
+}
+
+:root[data-bs-theme='light'] .booking-section-title i {
+  color: var(--brand-accent);
+}

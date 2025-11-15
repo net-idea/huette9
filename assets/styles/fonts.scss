@@ -1,0 +1,33 @@
+/* ============================================================================
+   Hütte9 - Self-Hosted Manrope Font Family
+   Modern, geometric sans-serif typeface
+   ============================================================================ */
+
+// ============================================================================
+// Manrope Variable Font (Recommended - Supports all weights 200-800)
+// This single file provides all font weights dynamically
+// ============================================================================
+@font-face {
+  font-family: 'Manrope';
+  src:
+    url('../fonts/manrope-variablefont-wght.woff2') format('woff2'),
+    url('../fonts/manrope-variablefont-wght.woff') format('woff'),
+    url('../fonts/manrope-variablefont-wght.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+// ============================================================================
+// Manrope Semi Bold (600) - Static Fallback
+// ============================================================================
+@font-face {
+  font-family: 'Manrope';
+  src:
+    url('../fonts/manrope-semibold.woff2') format('woff2'),
+    url('../fonts/manrope-semibold.woff') format('woff'),
+    url('../fonts/manrope-semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

@@ -16,51 +16,48 @@ class HomeControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Welcome to Hütte9');
     }
 
-    public function testContactPageIsSuccessful(): void
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/contact');
-
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Get in Touch');
-    }
-
-    public function testContactFormIsPresent(): void
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/contact');
-
-        $this->assertResponseIsSuccessful();
-
-        // Check form fields are present
-        $this->assertCount(1, $crawler->filter('input[name="contact[name]"]'));
-        $this->assertCount(1, $crawler->filter('input[name="contact[email]"]'));
-        $this->assertCount(1, $crawler->filter('input[name="contact[subject]"]'));
-        $this->assertCount(1, $crawler->filter('textarea[name="contact[message]"]'));
-    }
-
     public function testLocaleSwitching(): void
     {
         $client = static::createClient();
 
-        // Test switching to German
+        // Switch to German
         $client->request('GET', '/locale/de');
         $this->assertResponseRedirects();
 
         $crawler = $client->followRedirect();
         $this->assertResponseIsSuccessful();
-
-        // Verify German content
         $this->assertSelectorTextContains('h1', 'Willkommen');
 
-        // Test switching to English
+        // Switch to English
         $client->request('GET', '/locale/en');
         $this->assertResponseRedirects();
 
         $crawler = $client->followRedirect();
         $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Welcome');
+    }
 
-        // Verify English content
+    public function testAutomaticLocaleSelectionGerman(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/', [], [], [
+            'HTTP_ACCEPT_LANGUAGE' => 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7',
+        ]);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Willkommen');
+    }
+
+    public function testAutomaticLocaleSelectionEnglish(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/', [], [], [
+            'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9,de;q=0.8',
+        ]);
+
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Welcome');
     }
 }

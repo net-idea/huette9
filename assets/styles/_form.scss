@@ -1,26 +1,40 @@
-/* ============================================
+/* ============================================================================
    FORM STYLES - Base (Theme-Agnostic)
    Material Design Floating Labels
-   ============================================ */
+   ============================================================================ */
 
 /* Form Group with Floating Label */
 .form-group {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: $spacing-md;
 }
 
 /* Form Controls - Base Styles */
-.form-control {
+.form-control,
+.form-select,
+select.form-control {
   width: 100%;
-  padding: 1rem 0.875rem 0.375rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border: 2px solid var(--input-border);
-  border-radius: 0.19rem !important; /* sharp radius */
+  padding: $input-padding-y $input-padding-x $input-padding-y-sm;
+  font-size: $input-font-size;
+  line-height: $line-height-base;
+  border: $input-border-width solid var(--input-border);
+  border-radius: var(--radius-form) !important;
   background: var(--input-bg);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(var(--glass-blur-sm));
+  transition: var(--transition-base);
   box-shadow: var(--input-shadow);
+  color: var(--input-text-color);
+}
+
+/* Select specific adjustments */
+.form-select,
+select.form-control {
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  appearance: none;
 }
 
 /* Remove all placeholders */
@@ -32,13 +46,13 @@
 /* Floating Label - Base State */
 .form-label {
   position: absolute;
-  top: 0.875rem;
-  left: 0.875rem;
-  font-size: 1rem;
+  top: $label-top-base;
+  left: $label-left-base;
+  font-size: $label-font-size-base;
   font-weight: 500;
   color: var(--input-label-color);
   pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-base);
   background: transparent;
   padding: 0 0.25rem;
   z-index: 1;
@@ -47,29 +61,39 @@
 /* Floating Label - Active State */
 .form-control:focus ~ .form-label,
 .form-control:not(:placeholder-shown) ~ .form-label,
-.form-control.has-value ~ .form-label {
-  top: -0.625rem;
-  left: 0.75rem;
-  font-size: 0.75rem;
+.form-control.has-value ~ .form-label,
+.form-select:focus ~ .form-label,
+.form-select:not([value=""]) ~ .form-label,
+.form-select.has-value ~ .form-label,
+select.form-control:focus ~ .form-label,
+select.form-control:not([value=""]) ~ .form-label,
+select.form-control.has-value ~ .form-label {
+  top: $label-top-float;
+  left: $label-left-float;
+  font-size: $label-font-size-float;
   font-weight: 600;
   color: var(--brand-primary);
   background: var(--input-label-bg);
-  padding: 0 0.5rem;
+  padding: 0 $label-padding-x;
 }
 
 /* Focus State */
-.form-control:focus {
+.form-control:focus,
+.form-select:focus,
+select.form-control:focus {
   border-color: var(--input-focus-border);
   box-shadow:
     var(--input-focus-shadow),
     0 0 0 0.25rem rgb(13 110 253 / 15%);
-  transform: translateY(-1px);
+  transform: var(--transform-focus-input);
   outline: none;
   background: var(--input-focus-bg);
 }
 
 /* Hover State */
-.form-control:hover:not(:focus) {
+.form-control:hover:not(:focus),
+.form-select:hover:not(:focus),
+select.form-control:hover:not(:focus) {
   border-color: rgb(13 110 253 / 30%);
   box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
 }
